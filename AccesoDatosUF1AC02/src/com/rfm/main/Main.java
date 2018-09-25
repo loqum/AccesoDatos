@@ -1,10 +1,17 @@
 package com.rfm.main;
 
+import com.rfm.model.Persona;
+
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+		Persona persona1 = new Persona();
+		Persona persona2 = new Persona();
+		Persona persona3 = new Persona();
+		Persona persona4 = new Persona();
+		Persona persona5 = new Persona();
+		
 	}
 
 }
