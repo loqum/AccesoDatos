@@ -25,26 +25,20 @@ public class FactoryTxt implements Factory {
 	}
 
 	@Override
-	public File createFile(String fileName) throws IOException {
-		file = FactoryUtil.create(fileName);
-		return file;
-	}
+	public File writeFile(String fileName, List<Persona> personas) throws IOException {
 
-	@Override
-	public File writeFile(List<Persona> personas) throws IOException {
-		
+		file = FactoryUtil.create(fileName);
+
 		try {
-			fileWriter = new FileWriter(file, true);
+			fileWriter = new FileWriter(file);
 			printWriter = new PrintWriter(fileWriter);
 
-			for (int i = 0; i <= personas.size(); i++) {
-				printWriter.println(personas.toString());
-			}
-			
+			printWriter.println(personas.toString());
+
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw e;
-			
+
 		} finally {
 			try {
 				if (null != fileWriter) {
@@ -60,12 +54,12 @@ public class FactoryTxt implements Factory {
 	}
 
 	@Override
-	public String readFile() throws IOException {
+	public String readFile(String fileName) throws IOException {
+
 		String linea;
 
 		try {
-			
-			fileReader = new FileReader(file);
+			fileReader = new FileReader(fileName);
 			bufferedReader = new BufferedReader(fileReader);
 
 			while ((linea = bufferedReader.readLine()) != null) {

@@ -15,21 +15,16 @@ public class FactoryBinary implements Factory {
 		super();
 	}
 	
-	@Override
-	public File createFile(String fileName) throws IOException {
-		file = FactoryUtil.create(fileName);
-		return file;
-	}
 
 	@Override
-	public File writeFile(List<Persona> personas) {
+	public File writeFile(String fileName, List<Persona> personas) throws IOException {
 		
 
 		return null;
 	}
 
 	@Override
-	public String readFile() {
+	public String readFile(String fileName) throws IOException {
 
 		return null;
 	}
