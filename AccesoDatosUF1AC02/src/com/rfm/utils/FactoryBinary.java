@@ -2,15 +2,16 @@ package com.rfm.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import com.rfm.model.Persona;
 
-public class FactoryPersonaBinary implements FactoryPersona {
+public class FactoryBinary implements Factory {
 
 	File file = null;
 	Persona persona = null;
 	
-	public FactoryPersonaBinary() {
+	public FactoryBinary() {
 		super();
 	}
 	
@@ -21,7 +22,7 @@ public class FactoryPersonaBinary implements FactoryPersona {
 	}
 
 	@Override
-	public File writeFile() {
+	public File writeFile(List<Persona> personas) {
 		
 
 		return null;

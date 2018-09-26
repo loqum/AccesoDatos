@@ -6,10 +6,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import com.rfm.model.Persona;
 
-public class FactoryPersonaTxt implements FactoryPersona {
+public class FactoryTxt implements Factory {
 
 	FactoryUtil createFile = new FactoryUtil();
 	FileReader fileReader = null;
@@ -19,7 +20,7 @@ public class FactoryPersonaTxt implements FactoryPersona {
 	File file = null;
 	Persona persona = null;
 
-	public FactoryPersonaTxt() {
+	public FactoryTxt() {
 		super();
 	}
 
@@ -30,14 +31,14 @@ public class FactoryPersonaTxt implements FactoryPersona {
 	}
 
 	@Override
-	public File writeFile() throws IOException {
-
+	public File writeFile(List<Persona> personas) throws IOException {
+		
 		try {
 			fileWriter = new FileWriter(file, true);
 			printWriter = new PrintWriter(fileWriter);
 
-			for (int i = 0; i <= 5; i++) {
-				printWriter.println("Línea" + i);
+			for (int i = 0; i <= personas.size(); i++) {
+				printWriter.println(personas.toString());
 			}
 			
 		} catch (IOException e) {
