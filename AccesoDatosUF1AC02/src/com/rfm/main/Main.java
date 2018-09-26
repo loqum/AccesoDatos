@@ -4,6 +4,7 @@ import com.rfm.model.Persona;
 
 public class Main {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		
 		Persona persona1 = new Persona();

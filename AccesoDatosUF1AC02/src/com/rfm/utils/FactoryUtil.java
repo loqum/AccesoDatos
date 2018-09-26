@@ -3,9 +3,9 @@ package com.rfm.utils;
 import java.io.File;
 import java.io.IOException;
 
-public class FileUtil {
+public class FactoryUtil {
 	
-	public static File createFile(String fileName) throws IOException {
+	public static File create(String fileName) throws IOException {
 		
 		File file = new File(fileName);
 		
