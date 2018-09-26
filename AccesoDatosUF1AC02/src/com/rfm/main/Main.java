@@ -20,11 +20,15 @@ public class Main {
 	static Factory factoriaBinario = new FactoryBinary();
 	static List<Persona> personas = new ArrayList<Persona>();
 	static Scanner scanner = new Scanner(System.in);
+	static StringBuilder builder = new StringBuilder();
 
 	public static void main(String[] args) throws IOException {
 
 //		factoriaTxt.readFile(PRUEBA);
 
+		builder
+			.append("Introduzca un nombre, un apellido y un idioma para la persona ");
+		
 		while (personas.size() < 5) {
 			personas.add(new Persona());
 		}
