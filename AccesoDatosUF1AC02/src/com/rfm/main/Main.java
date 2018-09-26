@@ -19,7 +19,6 @@ public class Main {
 	static Factory factoriaBinario = new FactoryBinary();
 	static List<Persona> personas = new ArrayList<Persona>();
 	static List<Usuario> usuarios = new ArrayList<Usuario>();
-	static Persona persona = new Persona();
 	static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
