@@ -8,7 +8,7 @@ import com.rfm.model.Persona;
 
 public interface Factory {
 	
-	public File createFile() throws IOException;
+	public File createFile(String fileName) throws IOException;
 	public File writeFile(List<Persona> personas) throws IOException;
 	public String readFile() throws IOException;
 

@@ -16,8 +16,8 @@ public class FactoryBinary implements Factory {
 	}
 	
 	@Override
-	public File createFile() throws IOException {
-		file = FactoryUtil.create("fileBinary.txt");
+	public File createFile(String fileName) throws IOException {
+		file = FactoryUtil.create(fileName);
 		return file;
 	}
 

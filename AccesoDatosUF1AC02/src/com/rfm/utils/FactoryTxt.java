@@ -25,8 +25,8 @@ public class FactoryTxt implements Factory {
 	}
 
 	@Override
-	public File createFile() throws IOException {
-		file = FactoryUtil.create("fileTxt.txt");
+	public File createFile(String fileName) throws IOException {
+		file = FactoryUtil.create(fileName);
 		return file;
 	}
 
@@ -64,7 +64,7 @@ public class FactoryTxt implements Factory {
 		String linea;
 
 		try {
-			file = createFile();
+			
 			fileReader = new FileReader(file);
 			bufferedReader = new BufferedReader(fileReader);
 
