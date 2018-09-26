@@ -1,1 +1,0 @@
-[Persona [nombre=ruben, apellido=fernandez, idioma=ingles], Persona [nombre=antonio, apellido=hernandez, idioma=castellano], Persona [nombre=Pepe, apellido=hernandez, idioma=italiano], Persona [nombre=jajaj, apellido=hahahah, idioma=jahsakjhs], Persona [nombre=kahsdfah, apellido=alshfalh, idioma=asjdfakj]]

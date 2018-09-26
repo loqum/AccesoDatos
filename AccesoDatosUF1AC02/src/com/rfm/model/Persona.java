@@ -43,7 +43,15 @@ public class Persona {
 
 	@Override
 	public String toString() {
-		return "Persona [nombre=" + nombre + ", apellido=" + apellido + ", idioma=" + idioma + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Persona [nombre=");
+		builder.append(nombre);
+		builder.append(", apellido=");
+		builder.append(apellido);
+		builder.append(", idioma=");
+		builder.append(idioma);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

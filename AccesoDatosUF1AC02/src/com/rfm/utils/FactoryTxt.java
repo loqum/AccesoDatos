@@ -11,6 +11,7 @@ import java.util.List;
 import com.rfm.model.Persona;
 
 public class FactoryTxt implements Factory {
+	private static final long serialVersionUID = 2385994570516030149L;
 
 	FactoryUtil createFile = new FactoryUtil();
 	FileReader fileReader = null;
@@ -25,7 +26,7 @@ public class FactoryTxt implements Factory {
 	}
 
 	@Override
-	public File writeFile(String fileName, List<Persona> personas) throws IOException {
+	public File writeFile(String fileName, List<?> personas) throws IOException {
 
 		file = FactoryUtil.create(fileName);
 

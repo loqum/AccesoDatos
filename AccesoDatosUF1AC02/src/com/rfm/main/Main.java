@@ -6,59 +6,47 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.rfm.model.Persona;
+import com.rfm.model.Usuario;
 import com.rfm.utils.Factory;
 import com.rfm.utils.FactoryBinary;
 import com.rfm.utils.FactoryTxt;
 
-@SuppressWarnings("unused")
 public class Main {
 
-	
-	private static final String PRUEBA = "prueba.txt";
-	private static final String ESCRITURA = "escritura.txt";
+	private static final String TXT = "archivo.txt";
+	private static final String BINARIO = "archivo.dat";
 	static Factory factoriaTxt = new FactoryTxt();
 	static Factory factoriaBinario = new FactoryBinary();
 	static List<Persona> personas = new ArrayList<Persona>();
+	static List<Usuario> usuarios = new ArrayList<Usuario>();
+	static Persona persona = new Persona();
 	static Scanner scanner = new Scanner(System.in);
-	static StringBuilder builder = new StringBuilder();
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-//		factoriaTxt.readFile(PRUEBA);
-
-		builder
-			.append("Introduzca un nombre, un apellido y un idioma para la persona ");
-		
 		while (personas.size() < 5) {
 			personas.add(new Persona());
+			usuarios.add(new Usuario());
 		}
-		
+
 		for (int i = 0; i < 5; i++) {
 			System.out.println("Introduzca un nombre, un apellido y un idioma para la persona " + i + ": ");
 			personas.get(i).setNombre(scanner.nextLine());
 			personas.get(i).setApellido(scanner.nextLine());
 			personas.get(i).setIdioma(scanner.nextLine());
 		}
-		
-		
-		
-//		personas.get(0).setNombre("Ruben");
-//		personas.get(0).setApellido("Fernandez");
-//		personas.get(0).setIdioma("Ingles");
-//		
-//		personas.get(1).setNombre("Pepe");
-//		personas.get(1).setApellido("Sacristán");
-//		personas.get(1).setIdioma("Italiano");
-//		
-//		personas.get(2).setNombre("Marta");
-//		personas.get(2).setApellido("Hernandez");
-//		personas.get(2).setIdioma("Castellano");
-//		
-//		personas.get(3).setNombre("Dimitri");
-//		personas.get(3).setApellido("Ascuas");
-//		personas.get(3).setIdioma("Ruso");
 
-		factoriaTxt.writeFile(ESCRITURA, personas);
+		for (int i = 0; i < 5; i++) {
+			System.out.println("Introduzca un nombre de usuario y una contraseÃ±a para el usuario " + i + ": ");
+			usuarios.get(i).setNombre(scanner.nextLine());
+			usuarios.get(i).setContrasenya(scanner.nextLine());
+		}
+
+		factoriaTxt.writeFile(TXT, personas);
+		factoriaTxt.readFile(TXT);
+
+		factoriaBinario.writeFile(BINARIO, usuarios);
+		factoriaBinario.readFile(BINARIO);
 
 	}
 
