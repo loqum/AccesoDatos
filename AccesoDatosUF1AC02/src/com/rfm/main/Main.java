@@ -29,14 +29,14 @@ public class Main {
 		}
 
 		for (int i = 0; i < 5; i++) {
-			System.out.println("Introduzca un nombre, un apellido y un idioma para la persona " + i + ": ");
+			System.out.println("Introduzca un nombre, un apellido y un idioma para la persona " + (i+1) + ": ");
 			personas.get(i).setNombre(scanner.nextLine());
 			personas.get(i).setApellido(scanner.nextLine());
 			personas.get(i).setIdioma(scanner.nextLine());
 		}
 
 		for (int i = 0; i < 5; i++) {
-			System.out.println("Introduzca un nombre de usuario y una contraseña para el usuario " + i + ": ");
+			System.out.println("Introduzca un nombre de usuario y una contraseña para el usuario " + (i+1) + ": ");
 			usuarios.get(i).setNombre(scanner.nextLine());
 			usuarios.get(i).setContrasenya(scanner.nextLine());
 		}
