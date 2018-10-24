@@ -1,4 +1,4 @@
-package com.rfm.beans;
+package com.rfm.modelos;
 
 public class SuperEspecie {
 

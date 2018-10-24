@@ -1,10 +1,13 @@
 package com.rfm.main;
 
-public class Ejemplo {
-	
-//	private final static Logger log = Logger.getLogger(String.valueOf(Ejemplo.class));
+import java.sql.SQLException;
 
-	public static void main(String[] args) {
-        
+import com.rfm.utils.DataBase;
+
+public class Ejemplo {
+		
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		DataBase.getInstance();
+		System.out.println(DataBase.getInstance().getConnection().isClosed());
     }
 }

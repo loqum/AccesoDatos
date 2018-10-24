@@ -1,24 +1,25 @@
-package com.rfm.beans;
+package com.rfm.modelos;
 
 public class SuperGuerrero extends SuperEspecie {
-	
+
 	private long idSuperGuerrero;
+	private long idSuperEspecie;
 	private String nombre;
 	private String descripción;
 	private TiposPoder tipoPoder;
 	private int nivelPoder;
-	
-	public SuperGuerrero(long idSuperEspecie, String nombre, long idSuperGuerrero, String nombre2, String descripción,
-			int nivelPoder) {
-		super(idSuperEspecie, nombre);
-		this.idSuperGuerrero = idSuperGuerrero;
-		nombre = nombre2;
-		this.descripción = descripción;
-		this.nivelPoder = nivelPoder;
-	}
 
 	public SuperGuerrero() {
-		
+
+	}
+
+	public SuperGuerrero(long idSuperEspecie, String nombre, long idSuperGuerrero, String descripción,
+			TiposPoder tipoPoder, int nivelPoder) {
+		super(idSuperEspecie, nombre);
+		this.idSuperGuerrero = idSuperGuerrero;
+		this.descripción = descripción;
+		this.tipoPoder = tipoPoder;
+		this.nivelPoder = nivelPoder;
 	}
 
 	public long getIdSuperGuerrero() {
@@ -27,6 +28,14 @@ public class SuperGuerrero extends SuperEspecie {
 
 	public void setIdSuperGuerrero(long idSuperGuerrero) {
 		this.idSuperGuerrero = idSuperGuerrero;
+	}
+
+	public long getIdSuperEspecie() {
+		return idSuperEspecie;
+	}
+
+	public void setIdSuperEspecie(long idSuperEspecie) {
+		this.idSuperEspecie = idSuperEspecie;
 	}
 
 	public String getNombre() {
