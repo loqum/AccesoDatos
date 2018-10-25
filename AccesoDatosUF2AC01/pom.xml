@@ -11,6 +11,35 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 	</properties>
 
+	<build>
+		<finalName>test</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>attached</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+							<archive>
+								<manifest>
+									<!-- Clase Main -->
+									<mainClass>com.rfm.main.Main</mainClass>
+								</manifest>
+							</archive>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 	<dependencies>
 
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
