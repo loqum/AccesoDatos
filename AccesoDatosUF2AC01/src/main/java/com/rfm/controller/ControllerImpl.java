@@ -3,11 +3,9 @@ package com.rfm.controller;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.rfm.modelos.SuperEspecie;
 import com.rfm.utils.DataBase;
 import com.rfm.utils.Util;
 
