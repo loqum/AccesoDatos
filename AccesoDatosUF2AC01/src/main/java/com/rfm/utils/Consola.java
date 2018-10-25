@@ -18,16 +18,18 @@ public class Consola {
 		String eleccion = null;
 		boolean isActive = true;
 
-		while (isActive) {
-			System.out.println(Util.getBienvenida());
+		System.out.println(Util.getBienvenida());
+		
+		while (isActive) {	
 			eleccion = scanner.nextLine();
 
 			if (Util.isValidNumber(eleccion)) {
 
 				switch (Integer.parseInt(eleccion)) {
 				case 0:
-					System.exit(0);
 					LOGGER.debug("Saliendo del programa...");
+					System.out.println("Saliendo del programa...");
+					System.exit(0);
 					break;
 
 				case 1:
@@ -35,8 +37,9 @@ public class Consola {
 						controller.createSuperEspecie();
 					} catch (SQLException e) {
 						LOGGER.error("No se ha podido crear la tabla", e);
+						System.out.println("No se ha podido crear la tabla");
 					}
-					
+
 					break;
 
 				case 2:
@@ -44,8 +47,9 @@ public class Consola {
 						controller.addSuperGuerrero();
 					} catch (SQLException e) {
 						LOGGER.error("No se ha podido insertar el registro", e);
+						System.out.println("No se ha podido insertar el registro");
 					}
-					
+
 					break;
 
 				case 3:
@@ -53,8 +57,9 @@ public class Consola {
 						controller.addPoder();
 					} catch (SQLException e) {
 						LOGGER.error("No se ha podido insertar el registro", e);
+						System.out.println("No se ha podido insertar el registro");
 					}
-					
+
 					break;
 
 				case 4:
@@ -62,8 +67,9 @@ public class Consola {
 						controller.readSuperGuerrero();
 					} catch (SQLException e) {
 						LOGGER.error("No se ha podido consultar el registro", e);
+						System.out.println("No se ha podido consultar el registro");
 					}
-					
+
 					break;
 
 				case 5:
@@ -71,8 +77,9 @@ public class Consola {
 						controller.resetSuperGuerrero();
 					} catch (SQLException e) {
 						LOGGER.error("No se ha podido resetear el registro", e);
+						System.out.println("No se ha podido resetear el registro");
 					}
-					
+
 					break;
 
 				case 6:
@@ -80,8 +87,9 @@ public class Consola {
 						controller.deleteSuperGuerrero();
 					} catch (SQLException e) {
 						LOGGER.error("No se ha podido eliminar el registro", e);
+						System.out.println("No se ha podido eliminar el registro");
 					}
-					
+
 					break;
 
 				case 7:
@@ -89,16 +97,22 @@ public class Consola {
 						controller.deleteSuperEspecie();
 					} catch (SQLException e) {
 						LOGGER.error("No se ha podido eliminar el registro", e);
+						System.out.println("No se ha podido eliminar el registro");
 					}
-					
+
 					break;
 
+				case 8:
+					System.out.println(Util.getBienvenida());
+					break;
+					
 				default:
 					LOGGER.debug("Entrada invalida...");
+					System.out.println("Entrada invalida...");
 					break;
 				}
 			} else {
-				System.out.println("Debe introducir un valor numerico que se corresponda con las intrucciones.\n");
+				System.out.println("\n\nDebe introducir un valor numerico que se corresponda con las intrucciones.\n");
 				LOGGER.debug("Ha introducido un valor no valido");
 			}
 

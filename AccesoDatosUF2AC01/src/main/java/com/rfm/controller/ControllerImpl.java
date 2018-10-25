@@ -38,6 +38,7 @@ public class ControllerImpl implements Controller {
 
 		} catch (SQLException e) {
 			LOGGER.error("No se ha podido crear la tabla SuperEspecie", e);
+			System.out.println("No se ha podido crear la tabla SuperEspecie");
 		}
 
 	}
@@ -60,6 +61,7 @@ public class ControllerImpl implements Controller {
 
 		} catch (SQLException e) {
 			LOGGER.error("No se ha podido insertar el registro", e);
+			System.out.println("No se ha podido insertar el registro");
 		}
 
 	}
@@ -82,6 +84,7 @@ public class ControllerImpl implements Controller {
 
 		} catch (SQLException e) {
 			LOGGER.error("No se ha podido insertar el registro", e);
+			System.out.println("No se ha podido insertar el registro");
 		}
 
 	}
@@ -101,6 +104,7 @@ public class ControllerImpl implements Controller {
 
 		} catch (SQLException e) {
 			LOGGER.error("No se ha podido acceder al registro", e);
+			System.out.println("No se ha podido acceder al registro");
 		}
 
 	}
@@ -123,6 +127,7 @@ public class ControllerImpl implements Controller {
 
 		} catch (SQLException e) {
 			LOGGER.error("No se ha podido resetear el registro", e);
+			System.out.println("No se ha podido resetear el registro");
 		}
 
 	}
@@ -145,6 +150,7 @@ public class ControllerImpl implements Controller {
 
 		} catch (SQLException e) {
 			LOGGER.error("No se ha podido borrar el registro", e);
+			System.out.println("No se ha podido borrar el registro");
 		}
 
 	}
@@ -167,6 +173,7 @@ public class ControllerImpl implements Controller {
 
 		} catch (SQLException e) {
 			LOGGER.error("No se ha podido borrar el registro", e);
+			System.out.println("No se ha podido borrar el registro");
 		}
 
 	}
