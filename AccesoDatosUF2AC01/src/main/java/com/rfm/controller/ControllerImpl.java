@@ -10,58 +10,164 @@ import com.rfm.utils.DataBase;
 
 public class ControllerImpl implements Controller {
 
-	private static final Logger logger = Logger.getLogger(com.rfm.controller.ControllerImpl.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(com.rfm.controller.ControllerImpl.class.getName());
 	private static final String CREATE = "";
+	private static final String ADDGUERRERO = "";
+	private static final String ADDPODER = "";
+	private static final String READ = "";
+	private static final String RESET = "";
+	private static final String DELETEGUERRERO = "";
+	private static final String DELETEESPECIE = "";
 
 	@Override
-	public void createSuperEspecie() throws SQLException {
-		Connection connection = DataBase.getInstance().getConnection();
-		Statement sentence = connection.createStatement();
+	public void createSuperEspecie() {
+		Connection connection;
 
-		if (sentence.executeUpdate(CREATE) > 0) {
-			logger.debug("El registro se insertó satisfactoriamente");
-		} else {
-			logger.error("El resgistro no se pudo insertar");
+		try {
+			connection = DataBase.getInstance().getConnection();
+			Statement sentence = connection.createStatement();
+
+			if (sentence.executeUpdate(CREATE) > 0) {
+				LOGGER.debug("La tabla se ha creado satisfactoriamente");
+			} else {
+				LOGGER.debug("La tabla no se ha podido crear");
+			}
+
+			sentence.close();
+			connection.close();
+
+		} catch (SQLException e) {
+			LOGGER.error("No se ha podido crear la tabla SuperEspecie", e);
 		}
 
-		logger.debug(CREATE);
-		sentence.close();
-		connection.close();
 	}
 
 	@Override
 	public void addSuperGuerrero() {
-		// TODO Auto-generated method stub
+		Connection connection;
+		try {
+			connection = DataBase.getInstance().getConnection();
+			Statement sentence = connection.createStatement();
+
+			if (sentence.executeUpdate(ADDGUERRERO) > 0) {
+				LOGGER.debug("El registro se ha insertado satisfactoriamente");
+			} else {
+				LOGGER.debug("El registro no se ha podido insertar");
+			}
+
+			sentence.close();
+			connection.close();
+
+		} catch (SQLException e) {
+			LOGGER.error("No se ha podido insertar el registro", e);
+		}
 
 	}
 
 	@Override
 	public void addPoder() {
-		// TODO Auto-generated method stub
+		Connection connection;
+		try {
+			connection = DataBase.getInstance().getConnection();
+			Statement sentence = connection.createStatement();
+
+			if (sentence.executeUpdate(ADDPODER) > 0) {
+				LOGGER.debug("El registro se ha insertado satisfactoriamente");
+			} else {
+				LOGGER.debug("El registro no se ha podido insertar");
+			}
+
+			sentence.close();
+			connection.close();
+
+		} catch (SQLException e) {
+			LOGGER.error("No se ha podido insertar el registro", e);
+		}
 
 	}
 
 	@Override
 	public void readSuperGuerrero() {
-		// TODO Auto-generated method stub
+		Connection connection;
+		try {
+			connection = DataBase.getInstance().getConnection();
+			Statement sentence = connection.createStatement();
+
+			sentence.executeQuery(READ);
+			LOGGER.debug(sentence.toString());
+
+			sentence.close();
+			connection.close();
+
+		} catch (SQLException e) {
+			LOGGER.error("No se ha podido acceder al registro", e);
+		}
 
 	}
 
 	@Override
 	public void resetSuperGuerrero() {
-		// TODO Auto-generated method stub
+		Connection connection;
+		try {
+			connection = DataBase.getInstance().getConnection();
+			Statement sentence = connection.createStatement();
+
+			if (sentence.executeUpdate(RESET) > 0) {
+				LOGGER.debug("El registro se ha reseteado satisfactoriamente");
+			} else {
+				LOGGER.debug("El registro no se ha podido resetear");
+			}
+
+			sentence.close();
+			connection.close();
+
+		} catch (SQLException e) {
+			LOGGER.error("No se ha podido resetear el registro", e);
+		}
 
 	}
 
 	@Override
 	public void deleteSuperGuerrero() {
-		// TODO Auto-generated method stub
+		Connection connection;
+		try {
+			connection = DataBase.getInstance().getConnection();
+			Statement sentence = connection.createStatement();
+
+			if (sentence.executeUpdate(DELETEGUERRERO) > 0) {
+				LOGGER.debug("El registro se ha borrado satisfactoriamente");
+			} else {
+				LOGGER.debug("El registro no se ha podido borrar");
+			}
+
+			sentence.close();
+			connection.close();
+
+		} catch (SQLException e) {
+			LOGGER.error("No se ha podido borrar el registro", e);
+		}
 
 	}
 
 	@Override
 	public void deleteSuperEspecie() {
-		// TODO Auto-generated method stub
+		Connection connection;
+		try {
+			connection = DataBase.getInstance().getConnection();
+			Statement sentence = connection.createStatement();
+
+			if (sentence.executeUpdate(DELETEESPECIE) > 0) {
+				LOGGER.debug("El registro se ha borrado satisfactoriamente");
+			} else {
+				LOGGER.debug("El registro no se ha podido borrar");
+			}
+
+			sentence.close();
+			connection.close();
+
+		} catch (SQLException e) {
+			LOGGER.error("No se ha podido borrar el registro", e);
+		}
 
 	}
 
