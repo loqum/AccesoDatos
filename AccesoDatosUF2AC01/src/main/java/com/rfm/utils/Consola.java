@@ -7,25 +7,28 @@ import org.apache.log4j.Logger;
 
 import com.rfm.controller.Controller;
 import com.rfm.controller.ControllerImpl;
+import com.rfm.modelos.SuperEspecie;
 
 public class Consola {
 
 	private static Scanner scanner = new Scanner(System.in);
 	private static final Logger LOGGER = Logger.getLogger(com.rfm.utils.Consola.class.getName());
+	public static SuperEspecie superEspecie = new SuperEspecie();
 
-	public static void init() {
+	public static void init() throws SQLException {
 		Controller controller = new ControllerImpl();
 		String eleccion = null;
 		boolean isActive = true;
 
 		System.out.println(Util.getBienvenida());
-		
-		while (isActive) {	
+
+		while (isActive) {
 			eleccion = scanner.nextLine();
 
 			if (Util.isValidNumber(eleccion)) {
 
 				switch (Integer.parseInt(eleccion)) {
+				
 				case 0:
 					LOGGER.debug("Saliendo del programa...");
 					System.out.println("Saliendo del programa...");
@@ -33,12 +36,10 @@ public class Consola {
 					break;
 
 				case 1:
-					try {
-						controller.createSuperEspecie();
-					} catch (SQLException e) {
-						LOGGER.error("No se ha podido crear la tabla", e);
-						System.out.println("No se ha podido crear la tabla");
-					}
+					System.out.println("Introduce un nombre para la nueva Super Especie: ");
+					superEspecie.setNombre(scanner.nextLine());
+					System.out.println(superEspecie.getNombre());
+					controller.createSuperEspecie();
 
 					break;
 
@@ -105,7 +106,7 @@ public class Consola {
 				case 8:
 					System.out.println(Util.getBienvenida());
 					break;
-					
+
 				default:
 					LOGGER.debug("Entrada invalida...");
 					System.out.println("Entrada invalida...");

@@ -18,11 +18,6 @@ public class SuperEspecie {
 		return idSuperEspecie;
 	}
 
-	@SuppressWarnings("unused")
-	private void setIdSuperEspecie(long idSuperEspecie) {
-		this.idSuperEspecie = idSuperEspecie;
-	}
-
 	public String getNombre() {
 		return nombre;
 	}

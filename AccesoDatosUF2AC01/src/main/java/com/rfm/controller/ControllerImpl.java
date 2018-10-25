@@ -3,10 +3,13 @@ package com.rfm.controller;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
+import com.rfm.modelos.SuperEspecie;
 import com.rfm.utils.DataBase;
+import com.rfm.utils.Util;
 
 public class ControllerImpl implements Controller {
 
@@ -22,7 +25,6 @@ public class ControllerImpl implements Controller {
 	@Override
 	public void createSuperEspecie() {
 		Connection connection;
-
 		try {
 			connection = DataBase.getInstance().getConnection();
 			Statement sentence = connection.createStatement();
@@ -39,6 +41,7 @@ public class ControllerImpl implements Controller {
 		} catch (SQLException e) {
 			LOGGER.error("No se ha podido crear la tabla SuperEspecie", e);
 			System.out.println("No se ha podido crear la tabla SuperEspecie");
+			System.out.println(Util.getBienvenida());
 		}
 
 	}

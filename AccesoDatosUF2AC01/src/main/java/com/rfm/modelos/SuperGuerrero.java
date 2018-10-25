@@ -26,16 +26,8 @@ public class SuperGuerrero extends SuperEspecie {
 		return idSuperGuerrero;
 	}
 
-	public void setIdSuperGuerrero(long idSuperGuerrero) {
-		this.idSuperGuerrero = idSuperGuerrero;
-	}
-
 	public long getIdSuperEspecie() {
 		return idSuperEspecie;
-	}
-
-	public void setIdSuperEspecie(long idSuperEspecie) {
-		this.idSuperEspecie = idSuperEspecie;
 	}
 
 	public String getNombre() {

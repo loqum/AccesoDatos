@@ -8,8 +8,8 @@ public class Util {
 	
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = Logger.getLogger(com.rfm.utils.Util.class.getName());
-	private static StringBuilder builder = new StringBuilder();
-	private static final StringBuilder BIENVENIDA = builder
+	private static StringBuilder builderBienvenida = new StringBuilder();
+	private static final StringBuilder BIENVENIDA = builderBienvenida
 			.append("\n\n\nElija una opcion:\n")
 			.append("\n")
 			.append("0: Salir del programa")
