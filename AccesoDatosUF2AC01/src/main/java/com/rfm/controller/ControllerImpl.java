@@ -51,6 +51,10 @@ public class ControllerImpl implements Controller {
 				addSuperEspecie.close();
 			}
 			
+			if (connection != null) {
+				connection.close();
+			}
+			
 			connection.setAutoCommit(true);
 		}
 		
@@ -59,28 +63,51 @@ public class ControllerImpl implements Controller {
 	}
 
 	@Override
-	public void addSuperGuerrero() {
+	public void addSuperGuerrero() throws SQLException {
 		Connection connection = null;
 		PreparedStatement addSuperGuerrero = null;
 		
 		try {
 			connection = DataBase.getInstance().getConnection();
 			connection.setAutoCommit(false);
+			
 			addSuperGuerrero = connection.prepareStatement(Literales.getAddguerrero());
-			Statement sentence = connection.createStatement();
+			addSuperGuerrero.setLong(1, Consola.superGuerrero.getIdSuperEspecie());
+			addSuperGuerrero.setString(2, Consola.superGuerrero.getNombre());
+			addSuperGuerrero.setString(3, Consola.superGuerrero.getDescripcion());
+			addSuperGuerrero.setString(4, Consola.superGuerrero.getTipoPoder());
+			addSuperGuerrero.setInt(5, Consola.superGuerrero.getNivelPoder());
+			
+			connection.commit();
 
-			if (sentence.executeUpdate(Literales.getAddguerrero()) > 0) {
+			if (addSuperGuerrero.executeUpdate() > 0) {
 				LOGGER.debug(Literales.getRegistroExitoInsert());
+				System.out.println(Literales.getRegistroExitoInsert());
 			} else {
 				LOGGER.debug(Literales.getRegistroErrorInsert());
 			}
 
-			sentence.close();
-			connection.close();
-
 		} catch (SQLException e) {
-			LOGGER.error(Literales.getRegistroErrorInsert(), e);
-			System.out.println(Literales.getRegistroErrorInsert());
+			if (connection != null) {
+				try {
+					LOGGER.error(Literales.getRegistroErrorInsert(), e);
+					System.out.println(Literales.getRegistroErrorInsert());
+					connection.rollback();
+				} catch (SQLException excep) {
+					LOGGER.error(excep);
+				} 
+			}
+			
+		} finally {
+			if (addSuperGuerrero != null) {
+				addSuperGuerrero.close();
+			}
+			
+			if (connection != null) {
+				connection.close();
+			}
+			
+			connection.setAutoCommit(true);
 		}
 
 	}

@@ -49,7 +49,7 @@ public class Consola {
 					System.out.println(Literales.getIntroduceNombreGuerrero());
 					superGuerrero.setNombre(scanner.nextLine());
 					System.out.println(Literales.getIntroduceDescripcionGuerrero().concat(superGuerrero.getNombre()));
-					superGuerrero.setDescripción(scanner.nextLine());
+					superGuerrero.setDescripcion(scanner.nextLine());
 					System.out.println(Literales.getIntroduceTipopoderGuerrero().concat(superGuerrero.getNombre()));
 
 					poder = scanner.nextLine();
