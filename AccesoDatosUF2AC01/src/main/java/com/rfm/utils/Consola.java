@@ -8,57 +8,79 @@ import org.apache.log4j.Logger;
 import com.rfm.controller.Controller;
 import com.rfm.controller.ControllerImpl;
 import com.rfm.modelos.SuperEspecie;
+import com.rfm.modelos.SuperGuerrero;
 
 public class Consola {
 
 	private static Scanner scanner = new Scanner(System.in);
 	private static final Logger LOGGER = Logger.getLogger(com.rfm.utils.Consola.class.getName());
 	public static SuperEspecie superEspecie = new SuperEspecie();
+	public static SuperGuerrero superGuerrero = new SuperGuerrero();
+	private static String poder = null;
+	private static String nivel = null;
 
 	public static void init() throws SQLException {
 		Controller controller = new ControllerImpl();
 		String eleccion = null;
 		boolean isActive = true;
 
-		System.out.println(Util.getBienvenida());
+		System.out.println(Literales.getBienvenidaPrograma());
 
 		while (isActive) {
 			eleccion = scanner.nextLine();
 
-			if (Util.isValidNumber(eleccion)) {
+			if (Validaciones.isValidNumber(eleccion)) {
 
 				switch (Integer.parseInt(eleccion)) {
-				
+
 				case 0:
-					LOGGER.debug("Saliendo del programa...");
-					System.out.println("Saliendo del programa...");
+					LOGGER.debug(Literales.getSalidaPrograma());
+					System.out.println(Literales.getSalidaPrograma());
 					System.exit(0);
 					break;
 
 				case 1:
-					System.out.println("Introduce un nombre para la nueva Super Especie: ");
+					System.out.println(Literales.getIntroduceNombreEspecie());
 					superEspecie.setNombre(scanner.nextLine());
-					System.out.println(superEspecie.getNombre());
-					controller.createSuperEspecie();
-
+					controller.addSuperEspecie();
 					break;
 
 				case 2:
-					try {
-						controller.addSuperGuerrero();
-					} catch (SQLException e) {
-						LOGGER.error("No se ha podido insertar el registro", e);
-						System.out.println("No se ha podido insertar el registro");
+					System.out.println(Literales.getIntroduceNombreGuerrero());
+					superGuerrero.setNombre(scanner.nextLine());
+					System.out.println(Literales.getIntroduceDescripcionGuerrero().concat(superGuerrero.getNombre()));
+					superGuerrero.setDescripción(scanner.nextLine());
+					System.out.println(Literales.getIntroduceTipopoderGuerrero().concat(superGuerrero.getNombre()));
+
+					poder = scanner.nextLine();
+
+					while (!Validaciones.isValidPower(poder)) {
+						System.out.println(Literales.getIntroducePoderError());
+						poder = scanner.nextLine();
 					}
 
+					superGuerrero.setTipoPoder(poder);
+
+					System.out.println(Literales.getIntroduceNivelpoderGuerrero().concat(superGuerrero.getNombre()));
+					
+					nivel = scanner.nextLine();
+					
+					while (!Validaciones.isValidNumber(nivel) || !Validaciones.isValidLevel(Integer.parseInt(nivel))) {
+						System.out.println(Literales.getEntradaInvalida());
+						nivel = scanner.nextLine();
+					}
+					
+					superGuerrero.setNivelPoder(Integer.parseInt(nivel));
+					
+					controller.addSuperGuerrero();
 					break;
 
 				case 3:
 					try {
 						controller.addPoder();
 					} catch (SQLException e) {
-						LOGGER.error("No se ha podido insertar el registro", e);
-						System.out.println("No se ha podido insertar el registro");
+						LOGGER.error(Literales.getRegistroErrorInsert(), e);
+						System.out.println(Literales.getRegistroErrorInsert());
 					}
 
 					break;
@@ -67,8 +89,8 @@ public class Consola {
 					try {
 						controller.readSuperGuerrero();
 					} catch (SQLException e) {
-						LOGGER.error("No se ha podido consultar el registro", e);
-						System.out.println("No se ha podido consultar el registro");
+						LOGGER.error(Literales.getRegistroErrorSelect(), e);
+						System.out.println(Literales.getRegistroErrorSelect());
 					}
 
 					break;
@@ -77,8 +99,8 @@ public class Consola {
 					try {
 						controller.resetSuperGuerrero();
 					} catch (SQLException e) {
-						LOGGER.error("No se ha podido resetear el registro", e);
-						System.out.println("No se ha podido resetear el registro");
+						LOGGER.error(Literales.getRegistroErrorReset(), e);
+						System.out.println(Literales.getRegistroErrorReset());
 					}
 
 					break;
@@ -87,8 +109,8 @@ public class Consola {
 					try {
 						controller.deleteSuperGuerrero();
 					} catch (SQLException e) {
-						LOGGER.error("No se ha podido eliminar el registro", e);
-						System.out.println("No se ha podido eliminar el registro");
+						LOGGER.error(Literales.getRegistroErrorDelete(), e);
+						System.out.println(Literales.getRegistroErrorDelete());
 					}
 
 					break;
@@ -97,24 +119,24 @@ public class Consola {
 					try {
 						controller.deleteSuperEspecie();
 					} catch (SQLException e) {
-						LOGGER.error("No se ha podido eliminar el registro", e);
-						System.out.println("No se ha podido eliminar el registro");
+						LOGGER.error(Literales.getRegistroErrorDelete(), e);
+						System.out.println(Literales.getRegistroErrorDelete());
 					}
 
 					break;
 
 				case 8:
-					System.out.println(Util.getBienvenida());
+					System.out.println(Literales.getBienvenidaPrograma());
 					break;
 
 				default:
-					LOGGER.debug("Entrada invalida...");
-					System.out.println("Entrada invalida...");
+					LOGGER.debug(Literales.getEntradaInvalida());
+					System.out.println(Literales.getEntradaInvalida());
 					break;
 				}
 			} else {
-				System.out.println("\n\nDebe introducir un valor numerico que se corresponda con las intrucciones.\n");
-				LOGGER.debug("Ha introducido un valor no valido");
+				System.out.println(Literales.getEntradaInvalida());
+				LOGGER.debug(Literales.getEntradaInvalida());
 			}
 
 		}

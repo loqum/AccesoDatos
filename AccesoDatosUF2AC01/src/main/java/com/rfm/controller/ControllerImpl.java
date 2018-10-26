@@ -1,68 +1,86 @@
 package com.rfm.controller;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.apache.log4j.Logger;
 
+import com.rfm.utils.Consola;
 import com.rfm.utils.DataBase;
-import com.rfm.utils.Util;
+import com.rfm.utils.Literales;
 
 public class ControllerImpl implements Controller {
 
 	private static final Logger LOGGER = Logger.getLogger(com.rfm.controller.ControllerImpl.class.getName());
-	private static final String CREATE = "";
-	private static final String ADDGUERRERO = "";
-	private static final String ADDPODER = "";
-	private static final String READ = "";
-	private static final String RESET = "";
-	private static final String DELETEGUERRERO = "";
-	private static final String DELETEESPECIE = "";
 
 	@Override
-	public void createSuperEspecie() {
-		Connection connection;
+	public void addSuperEspecie() throws SQLException {
+		Connection connection = null;
+		PreparedStatement addSuperEspecie = null;
+
 		try {
 			connection = DataBase.getInstance().getConnection();
-			Statement sentence = connection.createStatement();
+			connection.setAutoCommit(false);
+			addSuperEspecie = connection.prepareStatement(Literales.getAddsuperespecie());
+			addSuperEspecie.setString(1, Consola.superEspecie.getNombre());
+			connection.commit();
 
-			if (sentence.executeUpdate(CREATE) > 0) {
-				LOGGER.debug("La tabla se ha creado satisfactoriamente");
+			if (addSuperEspecie.executeUpdate() > 0) {
+				LOGGER.debug(Literales.getRegistroExitoInsert());
+				System.out.println(Literales.getRegistroExitoInsert());
 			} else {
-				LOGGER.debug("La tabla no se ha podido crear");
+				LOGGER.debug(Literales.getRegistroErrorInsert());
 			}
 
-			sentence.close();
-			connection.close();
-
 		} catch (SQLException e) {
-			LOGGER.error("No se ha podido crear la tabla SuperEspecie", e);
-			System.out.println("No se ha podido crear la tabla SuperEspecie");
-			System.out.println(Util.getBienvenida());
+			if (connection != null) {
+				try {
+					LOGGER.error(Literales.getRegistroErrorInsert(), e);
+					System.out.println(Literales.getRegistroErrorInsert());
+					connection.rollback();
+				} catch (SQLException excep) {
+					LOGGER.error(excep);
+				} 
+			}
+			
+		} finally {
+			
+			if (addSuperEspecie != null) {
+				addSuperEspecie.close();
+			}
+			
+			connection.setAutoCommit(true);
 		}
+		
+		System.out.println(Literales.getBienvenidaPrograma());
 
 	}
 
 	@Override
 	public void addSuperGuerrero() {
-		Connection connection;
+		Connection connection = null;
+		PreparedStatement addSuperGuerrero = null;
+		
 		try {
 			connection = DataBase.getInstance().getConnection();
+			connection.setAutoCommit(false);
+			addSuperGuerrero = connection.prepareStatement(Literales.getAddguerrero());
 			Statement sentence = connection.createStatement();
 
-			if (sentence.executeUpdate(ADDGUERRERO) > 0) {
-				LOGGER.debug("El registro se ha insertado satisfactoriamente");
+			if (sentence.executeUpdate(Literales.getAddguerrero()) > 0) {
+				LOGGER.debug(Literales.getRegistroExitoInsert());
 			} else {
-				LOGGER.debug("El registro no se ha podido insertar");
+				LOGGER.debug(Literales.getRegistroErrorInsert());
 			}
 
 			sentence.close();
 			connection.close();
 
 		} catch (SQLException e) {
-			LOGGER.error("No se ha podido insertar el registro", e);
-			System.out.println("No se ha podido insertar el registro");
+			LOGGER.error(Literales.getRegistroErrorInsert(), e);
+			System.out.println(Literales.getRegistroErrorInsert());
 		}
 
 	}
@@ -74,18 +92,18 @@ public class ControllerImpl implements Controller {
 			connection = DataBase.getInstance().getConnection();
 			Statement sentence = connection.createStatement();
 
-			if (sentence.executeUpdate(ADDPODER) > 0) {
-				LOGGER.debug("El registro se ha insertado satisfactoriamente");
+			if (sentence.executeUpdate(Literales.getAddpoder()) > 0) {
+				LOGGER.debug(Literales.getRegistroExitoInsert());
 			} else {
-				LOGGER.debug("El registro no se ha podido insertar");
+				LOGGER.debug(Literales.getRegistroErrorInsert());
 			}
 
 			sentence.close();
 			connection.close();
 
 		} catch (SQLException e) {
-			LOGGER.error("No se ha podido insertar el registro", e);
-			System.out.println("No se ha podido insertar el registro");
+			LOGGER.error(Literales.getRegistroErrorInsert(), e);
+			System.out.println(Literales.getRegistroErrorInsert());
 		}
 
 	}
@@ -97,15 +115,15 @@ public class ControllerImpl implements Controller {
 			connection = DataBase.getInstance().getConnection();
 			Statement sentence = connection.createStatement();
 
-			sentence.executeQuery(READ);
+			sentence.executeQuery(Literales.getRead());
 			LOGGER.debug(sentence.toString());
 
 			sentence.close();
 			connection.close();
 
 		} catch (SQLException e) {
-			LOGGER.error("No se ha podido acceder al registro", e);
-			System.out.println("No se ha podido acceder al registro");
+			LOGGER.error(Literales.getRegistroErrorSelect(), e);
+			System.out.println(Literales.getRegistroErrorSelect());
 		}
 
 	}
@@ -117,18 +135,18 @@ public class ControllerImpl implements Controller {
 			connection = DataBase.getInstance().getConnection();
 			Statement sentence = connection.createStatement();
 
-			if (sentence.executeUpdate(RESET) > 0) {
-				LOGGER.debug("El registro se ha reseteado satisfactoriamente");
+			if (sentence.executeUpdate(Literales.getReset()) > 0) {
+				LOGGER.debug(Literales.getRegistroExitoReset());
 			} else {
-				LOGGER.debug("El registro no se ha podido resetear");
+				LOGGER.debug(Literales.getRegistroErrorReset());
 			}
 
 			sentence.close();
 			connection.close();
 
 		} catch (SQLException e) {
-			LOGGER.error("No se ha podido resetear el registro", e);
-			System.out.println("No se ha podido resetear el registro");
+			LOGGER.error(Literales.getRegistroErrorReset(), e);
+			System.out.println(Literales.getRegistroErrorReset());
 		}
 
 	}
@@ -140,18 +158,18 @@ public class ControllerImpl implements Controller {
 			connection = DataBase.getInstance().getConnection();
 			Statement sentence = connection.createStatement();
 
-			if (sentence.executeUpdate(DELETEGUERRERO) > 0) {
-				LOGGER.debug("El registro se ha borrado satisfactoriamente");
+			if (sentence.executeUpdate(Literales.getDeleteguerrero()) > 0) {
+				LOGGER.debug(Literales.getRegistroExitoDelete());
 			} else {
-				LOGGER.debug("El registro no se ha podido borrar");
+				LOGGER.debug(Literales.getRegistroErrorDelete());
 			}
 
 			sentence.close();
 			connection.close();
 
 		} catch (SQLException e) {
-			LOGGER.error("No se ha podido borrar el registro", e);
-			System.out.println("No se ha podido borrar el registro");
+			LOGGER.error(Literales.getRegistroErrorDelete(), e);
+			System.out.println(Literales.getRegistroErrorDelete());
 		}
 
 	}
@@ -163,18 +181,18 @@ public class ControllerImpl implements Controller {
 			connection = DataBase.getInstance().getConnection();
 			Statement sentence = connection.createStatement();
 
-			if (sentence.executeUpdate(DELETEESPECIE) > 0) {
-				LOGGER.debug("El registro se ha borrado satisfactoriamente");
+			if (sentence.executeUpdate(Literales.getDeleteespecie()) > 0) {
+				LOGGER.debug(Literales.getRegistroExitoDelete());
 			} else {
-				LOGGER.debug("El registro no se ha podido borrar");
+				LOGGER.debug(Literales.getRegistroErrorDelete());
 			}
 
 			sentence.close();
 			connection.close();
 
 		} catch (SQLException e) {
-			LOGGER.error("No se ha podido borrar el registro", e);
-			System.out.println("No se ha podido borrar el registro");
+			LOGGER.error(Literales.getRegistroErrorDelete(), e);
+			System.out.println(Literales.getRegistroErrorDelete());
 		}
 
 	}

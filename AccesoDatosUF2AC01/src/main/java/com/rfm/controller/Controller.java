@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public interface Controller {
 	
-	public void createSuperEspecie() throws SQLException;
+	public void addSuperEspecie() throws SQLException;
 	public void addSuperGuerrero() throws SQLException;
 	public void addPoder() throws SQLException;
 	public void readSuperGuerrero() throws SQLException;

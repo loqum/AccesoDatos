@@ -6,7 +6,7 @@ public class SuperGuerrero extends SuperEspecie {
 	private long idSuperEspecie;
 	private String nombre;
 	private String descripción;
-	private TiposPoder tipoPoder;
+	private String tipoPoder;
 	private int nivelPoder;
 
 	public SuperGuerrero() {
@@ -14,7 +14,7 @@ public class SuperGuerrero extends SuperEspecie {
 	}
 
 	public SuperGuerrero(long idSuperEspecie, String nombre, long idSuperGuerrero, String descripción,
-			TiposPoder tipoPoder, int nivelPoder) {
+			String tipoPoder, int nivelPoder) {
 		super(idSuperEspecie, nombre);
 		this.idSuperGuerrero = idSuperGuerrero;
 		this.descripción = descripción;
@@ -46,11 +46,11 @@ public class SuperGuerrero extends SuperEspecie {
 		this.descripción = descripción;
 	}
 
-	public TiposPoder getTipoPoder() {
+	public String getTipoPoder() {
 		return tipoPoder;
 	}
 
-	public void setTipoPoder(TiposPoder tipoPoder) {
+	public void setTipoPoder(String tipoPoder) {
 		this.tipoPoder = tipoPoder;
 	}
 
