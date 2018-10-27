@@ -2,6 +2,10 @@ package com.rfm.utils;
 
 public class Literales {
 	
+	private Literales() {
+		throw new IllegalStateException("Utility class");
+	}
+	
 	private static final String SALIDA_PROGRAMA = "Saliendo del programa...";
 	private static final String INTRODUCE_NOMBRE_GUERRERO = "Introduce un nombre para el nuevo Super Guerrero: ";
 	private static final String INTRODUCE_DESCRIPCION_GUERRERO = "Introduce una descripción para ";
@@ -26,13 +30,16 @@ public class Literales {
 	private static final String DELETEGUERRERO = "DELETE FROM superguerrero WHERE idsuperguerrero=(?)";
 	private static final String DELETEESPECIE = "DELETE FROM superespecie WHERE idsuperguerrero=(?)";
 	
+	private static final String ESQUELETO_LATERAL = "\n*										*";
+	private static final String ESQUELETO_VERTICAL = "\n*********************************************************************************";
+	
 	private static StringBuilder builderBienvenidaPrograma = new StringBuilder();
 	
 	private static final StringBuilder BIENVENIDA_PROGRAMA = builderBienvenidaPrograma
-			.append("\n*********************************************************************************")
-			.append("\n*										*")
+			.append(ESQUELETO_VERTICAL)
+			.append(ESQUELETO_LATERAL)
 			.append("\n*				Elija una opcion:				*")
-			.append("\n*										*")
+			.append(ESQUELETO_LATERAL)
 			.append("\n")
 			.append("*	0: Salir del programa							*")
 			.append("\n")
@@ -51,9 +58,9 @@ public class Literales {
 			.append("*	7: Eliminar Super Especie						*")
 			.append("\n")
 			.append("*	8: Ver instrucciones							*")
-			.append("\n*										*")
-			.append("\n*										*")
-			.append("\n*********************************************************************************");
+			.append(ESQUELETO_LATERAL)
+			.append(ESQUELETO_LATERAL)
+			.append(ESQUELETO_VERTICAL);
 
 	public static StringBuilder getBienvenidaPrograma() {
 		return BIENVENIDA_PROGRAMA;
