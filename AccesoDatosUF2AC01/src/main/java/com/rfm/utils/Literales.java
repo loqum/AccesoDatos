@@ -45,7 +45,7 @@ public class Literales {
 			.append("\n")
 			.append("*	1: Crear Super Especie							*")
 			.append("\n")
-			.append("*	2: AÃ±adir Super Guerrero						*")
+			.append("*	2: Añadir Super Guerrero						*")
 			.append("\n")
 			.append("*	3: Insertar nivel de poder en Super Guerrero				*")
 			.append("\n")

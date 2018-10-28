@@ -19,9 +19,10 @@ public class SuperGuerreroDaoImpl implements SuperGuerreroDao {
 	@Override
 	public void addSuperGuerrero(SuperGuerreroDto superGuerrero) throws SQLException {
 		PreparedStatement addSuperGuerrero = null;
-
-		try (Connection connection = ConnectionDataBase.getInstance().getConnection()) {
-
+		Connection connection = null;
+		try {
+			connection = ConnectionDataBase.getInstance().getConnection();
+			
 			connection.setAutoCommit(false);
 
 			addSuperGuerrero = connection.prepareStatement(Literales.getAddguerrero());

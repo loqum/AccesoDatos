@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import org.apache.log4j.Logger;
 
 public class ConnectionDataBase {
-
-	private static final String URL = "jdbc:mysql://localhost:3306/accesodatos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+//?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+	private static final String URL = "jdbc:mysql://127.0.0.1:3306/accesodatos";
 	private static final String USERNAME = "root";
 	private static final String PASS = "root";
 	private static final Logger LOGGER = Logger.getLogger(com.rfm.utils.ConnectionDataBase.class.getName());

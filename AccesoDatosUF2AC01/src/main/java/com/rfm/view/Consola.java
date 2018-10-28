@@ -25,127 +25,103 @@ public class Consola {
 	private static SuperGuerreroDaoImpl superGuerreroDao = new SuperGuerreroDaoImpl();
 	private static SuperEspecieDaoImpl superEspecieDao = new SuperEspecieDaoImpl();
 	private static String eleccion = null;
-	
+
 	public static void init() throws SQLException {
-		
 
 		System.out.println(Literales.getBienvenidaPrograma());
 
-		eleccion = scanner.nextLine();
+		while (true) {
 
-		if (Validaciones.isValidNumber(eleccion)) {
+			eleccion = scanner.nextLine();
 
-			switch (Integer.parseInt(eleccion)) {
+			if (Validaciones.isValidNumber(eleccion)) {
 
-			case 0:
-				LOGGER.debug(Literales.getSalidaPrograma());
-				System.out.println(Literales.getSalidaPrograma());
-				System.exit(0);
-				break;
+				switch (Integer.parseInt(eleccion)) {
 
-			case 1:
-				System.out.println(Literales.getIntroduceNombreEspecie());
-				superEspecie.setNombre(scanner.nextLine());
-				superEspecieDao.addSuperEspecie(superEspecie);
-				break;
+				case 0:
+					LOGGER.debug(Literales.getSalidaPrograma());
+					System.out.println(Literales.getSalidaPrograma());
+					System.exit(0);
+					break;
 
-			case 2:
-				String poder = null;
-				String nivel = null;
+				case 1:
+					System.out.println(Literales.getIntroduceNombreEspecie());
+					superEspecie.setNombre(scanner.nextLine());
+					superEspecieDao.addSuperEspecie(superEspecie);
+					break;
 
-				System.out.println(Literales.getIntroduceNombreGuerrero());
-				superGuerrero.setNombre(scanner.nextLine());
-				System.out.println(Literales.getIntroduceDescripcionGuerrero().concat(superGuerrero.getNombre()));
-				superGuerrero.setDescripcion(scanner.nextLine());
-				System.out.println(Literales.getIntroduceTipopoderGuerrero().concat(superGuerrero.getNombre()));
+				case 2:
+					String poder = null;
+					String nivel = null;
 
-				poder = scanner.nextLine();
+					System.out.println(Literales.getIntroduceNombreGuerrero());
+					superGuerrero.setNombre(scanner.nextLine());
+					System.out.println(Literales.getIntroduceDescripcionGuerrero().concat(superGuerrero.getNombre()));
+					superGuerrero.setDescripcion(scanner.nextLine());
+					System.out.println(Literales.getIntroduceTipopoderGuerrero().concat(superGuerrero.getNombre()));
 
-				while (!Validaciones.isValidPower(poder)) {
-					System.out.println(Literales.getIntroducePoderError());
 					poder = scanner.nextLine();
-				}
 
-				superGuerrero.setTipoPoder(poder);
+					while (!Validaciones.isValidPower(poder)) {
+						System.out.println(Literales.getIntroducePoderError());
+						poder = scanner.nextLine();
+					}
 
-				System.out.println(Literales.getIntroduceNivelpoderGuerrero().concat(superGuerrero.getNombre()));
+					superGuerrero.setTipoPoder(poder);
 
-				nivel = scanner.nextLine();
+					System.out.println(Literales.getIntroduceNivelpoderGuerrero().concat(superGuerrero.getNombre()));
 
-				while (!Validaciones.isValidNumber(nivel) || !Validaciones.isValidLevel(Integer.parseInt(nivel))) {
-					System.out.println(Literales.getEntradaInvalida());
 					nivel = scanner.nextLine();
-				}
 
-				superGuerrero.setNivelPoder(Integer.parseInt(nivel));
+					while (!Validaciones.isValidNumber(nivel) || !Validaciones.isValidLevel(Integer.parseInt(nivel))) {
+						System.out.println(Literales.getEntradaInvalida());
+						nivel = scanner.nextLine();
+					}
 
-				superGuerreroDao.addSuperGuerrero(superGuerrero);
-				break;
+					superGuerrero.setNivelPoder(Integer.parseInt(nivel));
 
-			case 3:
-				try {
+					superGuerreroDao.addSuperGuerrero(superGuerrero);
+					break;
+
+				case 3:
+
 					superGuerreroDao.addPoderSuperGuerrero(superGuerrero);
-				} catch (SQLException e) {
-					LOGGER.error(Literales.getRegistroErrorInsert(), e);
-					System.out.println(Literales.getRegistroErrorInsert());
-				}
+					break;
 
-				break;
+				case 4:
 
-			case 4:
-				try {
 					superGuerreroDao.readSuperGuerrero(superGuerrero);
-				} catch (SQLException e) {
-					LOGGER.error(Literales.getRegistroErrorSelect(), e);
-					System.out.println(Literales.getRegistroErrorSelect());
-				}
+					break;
 
-				break;
+				case 5:
 
-			case 5:
-				try {
 					superGuerreroDao.resetSuperGuerrero(superGuerrero);
-				} catch (SQLException e) {
-					LOGGER.error(Literales.getRegistroErrorReset(), e);
-					System.out.println(Literales.getRegistroErrorReset());
-				}
+					break;
 
-				break;
+				case 6:
 
-			case 6:
-				try {
 					superGuerreroDao.deleteSuperGuerrero(superGuerrero);
-				} catch (SQLException e) {
-					LOGGER.error(Literales.getRegistroErrorDelete(), e);
-					System.out.println(Literales.getRegistroErrorDelete());
-				}
+					break;
 
-				break;
-
-			case 7:
-				try {
+				case 7:
 					superEspecieDao.deleteSuperEspecie(superEspecie);
-				} catch (SQLException e) {
-					LOGGER.error(Literales.getRegistroErrorDelete(), e);
-					System.out.println(Literales.getRegistroErrorDelete());
+
+					break;
+
+				case 8:
+					System.out.println(Literales.getBienvenidaPrograma());
+					break;
+
+				default:
+					LOGGER.debug(Literales.getEntradaInvalida());
+					System.out.println(Literales.getEntradaInvalida());
+					break;
 				}
-
-				break;
-
-			case 8:
-				System.out.println(Literales.getBienvenidaPrograma());
-				break;
-
-			default:
-				LOGGER.debug(Literales.getEntradaInvalida());
+			} else {
 				System.out.println(Literales.getEntradaInvalida());
-				break;
+				LOGGER.debug(Literales.getEntradaInvalida());
 			}
-		} else {
-			System.out.println(Literales.getEntradaInvalida());
-			LOGGER.debug(Literales.getEntradaInvalida());
 		}
-
 	}
 
 	public static SuperEspecieDto getSuperEspecie() {
