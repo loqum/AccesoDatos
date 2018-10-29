@@ -26,11 +26,12 @@ public class SuperGuerreroDaoImpl implements SuperGuerreroDao {
 			connection.setAutoCommit(false);
 
 			addSuperGuerrero = connection.prepareStatement(Literales.getAddguerrero());
-			addSuperGuerrero.setLong(1, Consola.getSuperGuerrero().getIdSuperEspecie());
-			addSuperGuerrero.setString(2, Consola.getSuperGuerrero().getNombre());
-			addSuperGuerrero.setString(3, Consola.getSuperGuerrero().getDescripcion());
-			addSuperGuerrero.setString(4, Consola.getSuperGuerrero().getTipoPoder());
-			addSuperGuerrero.setInt(5, Consola.getSuperGuerrero().getNivelPoder());
+			addSuperGuerrero.setLong(1, 1);
+			addSuperGuerrero.setLong(2, 1);
+			addSuperGuerrero.setString(3, Consola.getSuperGuerrero().getNombre());
+			addSuperGuerrero.setString(4, Consola.getSuperGuerrero().getDescripcion());
+			addSuperGuerrero.setString(5, Consola.getSuperGuerrero().getTipoPoder());
+			addSuperGuerrero.setInt(6, Consola.getSuperGuerrero().getNivelPoder());
 
 			connection.commit();
 

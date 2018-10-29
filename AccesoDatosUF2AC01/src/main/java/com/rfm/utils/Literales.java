@@ -23,7 +23,7 @@ public class Literales {
 	private static final String ENTRADA_INVALIDA = "\nDebe introducir un valor numerico que se corresponda con las instrucciones.\n";
 
 	private static final String ADDSUPERESPECIE = "INSERT INTO superespecie (nombre) VALUES (?);";
-	private static final String ADDGUERRERO = "INSERT INTO superguerrero (idsuperespecie, nombre, descripcion, tipopoder, nivelpoder) VALUES (?,?,?,?,?);";
+	private static final String ADDGUERRERO = "INSERT INTO superguerrero (idsuperguerrero, idsuperespecie, nombre, descripcion, tipopoder, nivelpoder) VALUES (?,?,?,?,?,?);";
 	private static final String ADDPODER = "";
 	private static final String READ = "SELECT * FROM superespecie";
 	private static final String RESET = "";
@@ -45,7 +45,7 @@ public class Literales {
 			.append("\n")
 			.append("*	1: Crear Super Especie							*")
 			.append("\n")
-			.append("*	2: Añadir Super Guerrero						*")
+			.append("*	2: AÃ±adir Super Guerrero						*")
 			.append("\n")
 			.append("*	3: Insertar nivel de poder en Super Guerrero				*")
 			.append("\n")
