@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
@@ -13,7 +14,8 @@ import com.rfm.utils.Literales;
 import com.rfm.view.Consola;
 
 public class SuperEspecieDaoImpl implements SuperEspecieDao {
-
+	
+	private static Scanner scanner = new Scanner(System.in);
 	private static final Logger LOGGER = Logger.getLogger(com.rfm.dao.SuperEspecieDaoImpl.class.getName());
 
 	@Override
@@ -21,6 +23,10 @@ public class SuperEspecieDaoImpl implements SuperEspecieDao {
 
 		PreparedStatement addSuperEspecie = null;
 
+		System.out.println(Literales.getIntroduceNombreEspecie());
+		
+		superEspecie.setNombre(scanner.nextLine());
+		
 		try (Connection connection = ConnectionDataBase.getInstance().getConnection()) {
 			connection.setAutoCommit(false);
 			addSuperEspecie = connection.prepareStatement(Literales.getAddsuperespecie());

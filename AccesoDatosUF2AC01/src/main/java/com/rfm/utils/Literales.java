@@ -13,6 +13,7 @@ public class Literales {
 	private static final String INTRODUCE_NIVELPODER_GUERRERO = "Introduce el nivel de poder (1-5) para ";
 	private static final String INTRODUCE_NOMBRE_ESPECIE = "Introduce un nombre para la nueva Super Especie: ";
 	private static final String INTRODUCE_PODER_ERROR = "Debe introducir un poder de la lista";
+	private static final String INTRODUCE_TIPO_ESPECIE = "¿A qué Super Especie quieres que pertenezca este Super Guerrero?";
 	private static final String REGISTRO_EXITO_INSERT = "El registro se ha insertado satisfactoriamente";
 	private static final String REGISTRO_EXITO_RESET = "El registro se ha reseteado satisfactoriamente";
 	private static final String REGISTRO_EXITO_DELETE = "El registro se ha reseteado satisfactoriamente";
@@ -29,6 +30,7 @@ public class Literales {
 	private static final String RESET = "";
 	private static final String DELETEGUERRERO = "DELETE FROM superguerrero WHERE idsuperguerrero=(?)";
 	private static final String DELETEESPECIE = "DELETE FROM superespecie WHERE idsuperguerrero=(?)";
+	private static final String SELECT_SUPERESPECIE = "SELECT * FROM SUPERESPECIE";
 	
 	private static final String ESQUELETO_LATERAL = "\n*										*";
 	private static final String ESQUELETO_VERTICAL = "\n*********************************************************************************";
@@ -152,6 +154,14 @@ public class Literales {
 
 	public static String getRegistroExitoDelete() {
 		return REGISTRO_EXITO_DELETE;
+	}
+
+	public static String getIntroduceTipoEspecie() {
+		return INTRODUCE_TIPO_ESPECIE;
+	}
+
+	public static String getSelectSuperespecie() {
+		return SELECT_SUPERESPECIE;
 	}
 
 }

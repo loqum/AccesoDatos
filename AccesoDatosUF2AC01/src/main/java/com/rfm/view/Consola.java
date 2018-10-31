@@ -30,7 +30,7 @@ public class Consola {
 
 		System.out.println(Literales.getBienvenidaPrograma());
 
-		while (true) {
+		do {
 
 			eleccion = scanner.nextLine();
 
@@ -41,71 +41,34 @@ public class Consola {
 				case 0:
 					LOGGER.debug(Literales.getSalidaPrograma());
 					System.out.println(Literales.getSalidaPrograma());
-					System.exit(0);
 					break;
 
 				case 1:
-					System.out.println(Literales.getIntroduceNombreEspecie());
-					superEspecie.setNombre(scanner.nextLine());
 					superEspecieDao.addSuperEspecie(superEspecie);
 					break;
 
 				case 2:
-					String poder = null;
-					String nivel = null;
-
-					System.out.println(Literales.getIntroduceNombreGuerrero());
-					superGuerrero.setNombre(scanner.nextLine());
-					System.out.println(Literales.getIntroduceDescripcionGuerrero().concat(superGuerrero.getNombre()));
-					superGuerrero.setDescripcion(scanner.nextLine());
-					System.out.println(Literales.getIntroduceTipopoderGuerrero().concat(superGuerrero.getNombre()));
-
-					poder = scanner.nextLine();
-
-					while (!Validaciones.isValidPower(poder)) {
-						System.out.println(Literales.getIntroducePoderError());
-						poder = scanner.nextLine();
-					}
-
-					superGuerrero.setTipoPoder(poder);
-
-					System.out.println(Literales.getIntroduceNivelpoderGuerrero().concat(superGuerrero.getNombre()));
-
-					nivel = scanner.nextLine();
-
-					while (!Validaciones.isValidNumber(nivel) || !Validaciones.isValidLevel(Integer.parseInt(nivel))) {
-						System.out.println(Literales.getEntradaInvalida());
-						nivel = scanner.nextLine();
-					}
-
-					superGuerrero.setNivelPoder(Integer.parseInt(nivel));
-
 					superGuerreroDao.addSuperGuerrero(superGuerrero);
 					break;
 
 				case 3:
-
 					superGuerreroDao.addPoderSuperGuerrero(superGuerrero);
 					break;
 
 				case 4:
-
 					superGuerreroDao.readSuperGuerrero(superGuerrero);
 					break;
 
 				case 5:
-
 					superGuerreroDao.resetSuperGuerrero(superGuerrero);
 					break;
 
 				case 6:
-
 					superGuerreroDao.deleteSuperGuerrero(superGuerrero);
 					break;
 
 				case 7:
 					superEspecieDao.deleteSuperEspecie(superEspecie);
-
 					break;
 
 				case 8:
@@ -117,11 +80,13 @@ public class Consola {
 					System.out.println(Literales.getEntradaInvalida());
 					break;
 				}
+
 			} else {
 				System.out.println(Literales.getEntradaInvalida());
 				LOGGER.debug(Literales.getEntradaInvalida());
 			}
-		}
+
+		} while (Integer.parseInt(eleccion) != 0);
 	}
 
 	public static SuperEspecieDto getSuperEspecie() {

@@ -2,27 +2,75 @@ package com.rfm.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
 import com.rfm.dto.SuperGuerreroDto;
 import com.rfm.utils.ConnectionDataBase;
 import com.rfm.utils.Literales;
+import com.rfm.utils.Validaciones;
 import com.rfm.view.Consola;
 
 public class SuperGuerreroDaoImpl implements SuperGuerreroDao {
 
+	private static Scanner scanner = new Scanner(System.in);
 	private static final Logger LOGGER = Logger.getLogger(com.rfm.dao.SuperGuerreroDaoImpl.class.getName());
 
 	@Override
 	public void addSuperGuerrero(SuperGuerreroDto superGuerrero) throws SQLException {
 		PreparedStatement addSuperGuerrero = null;
+//		Statement sentence = null;
+//		ResultSet resultSet = null;
 		Connection connection = null;
+
+		String poder = null;
+		String nivel = null;
+
+		// TODO
+//		System.out.println(Literales.getIntroduceTipoEspecie());
+//		try {
+//			connection = ConnectionDataBase.getInstance().getConnection();
+//			resultSet = sentence.executeQuery(Literales.getSelectSuperespecie()); 
+//			while (resultSet.next()) {
+//				String line = resultSet.getString(columnIndex) 
+//			}
+//			
+//		}
+
+		System.out.println(Literales.getIntroduceNombreGuerrero());
+		superGuerrero.setNombre(scanner.nextLine());
+
+		System.out.println(Literales.getIntroduceDescripcionGuerrero().concat(superGuerrero.getNombre()));
+		superGuerrero.setDescripcion(scanner.nextLine());
+
+		System.out.println(Literales.getIntroduceTipopoderGuerrero().concat(superGuerrero.getNombre()));
+		poder = scanner.nextLine();
+
+		while (!Validaciones.isValidPower(poder)) {
+			System.out.println(Literales.getIntroducePoderError());
+			poder = scanner.nextLine();
+		}
+
+		superGuerrero.setTipoPoder(poder);
+
+		System.out.println(Literales.getIntroduceNivelpoderGuerrero().concat(superGuerrero.getNombre()));
+		nivel = scanner.nextLine();
+
+		while (!Validaciones.isValidNumber(nivel) || !Validaciones.isValidLevel(Integer.parseInt(nivel))) {
+			System.out.println(Literales.getEntradaInvalida());
+			nivel = scanner.nextLine();
+		}
+
+		superGuerrero.setNivelPoder(Integer.parseInt(nivel));
+
 		try {
+
 			connection = ConnectionDataBase.getInstance().getConnection();
-			
+
 			connection.setAutoCommit(false);
 
 			addSuperGuerrero = connection.prepareStatement(Literales.getAddguerrero());
@@ -38,6 +86,7 @@ public class SuperGuerreroDaoImpl implements SuperGuerreroDao {
 			if (addSuperGuerrero.executeUpdate() > 0) {
 				LOGGER.debug(Literales.getRegistroExitoInsert());
 				System.out.println(Literales.getRegistroExitoInsert());
+
 			} else {
 				LOGGER.debug(Literales.getRegistroErrorInsert());
 			}
