@@ -145,30 +145,37 @@ public class SuperGuerreroDaoImpl implements SuperGuerreroDao {
 
 	@Override
 	public synchronized void readSuperGuerrero(SuperGuerreroDto superGuerrero) throws SQLException {
-
-		try (Connection connection = ConnectionDataBase.getInstance().getConnection()) {
-
+		
+		Connection connection = null;
+		int idSuperGuerrero = 0;
+		int idSuperEspecie = 0;
+		String nombre = null;
+		String descripcion = null;
+		String tipoPoder = null;
+		int nivelPoder = 0;
+		
+		try {
+			connection = ConnectionDataBase.getInstance().getConnection();
 			statement = connection.createStatement();
+			resultSet = statement.executeQuery(Literales.getSelectSuperespecie());
 
-			statement.executeQuery(Literales.getSelectSuperGuerrero());
-			LOGGER.debug(statement.toString());
+			while (resultSet.next()) {
+				//TODO ARREGLAR MÉTODO IDSUPERGUERRERO
+				idSuperGuerrero = resultSet.getInt("idsuperguerrero");
+				idSuperEspecie = resultSet.getInt("idsuperespecie");
+				nombre = resultSet.getString("nombre");
+				descripcion = resultSet.getString("descripcion");
+				tipoPoder = resultSet.getString("tipopoder");
+				nivelPoder = resultSet.getInt("nivelpoder");
 
-			statement.close();
+				String output = "Super Guerrero #%d: %d, %s, %s, %s, %d";
+				System.out.println(String.format(output, idSuperGuerrero, idSuperEspecie, nombre, descripcion, tipoPoder, nivelPoder));
+			}
 
 		} catch (SQLException e) {
 			LOGGER.error(Literales.getRegistroErrorSelect(), e);
 			System.out.println(Literales.getRegistroErrorSelect());
 
-		} finally {
-			try {
-
-				if (statement != null) {
-					statement.close();
-				}
-
-			} catch (SQLException e) {
-				LOGGER.error(Literales.getRegistroErrorReset(), e);
-			}
 		}
 
 	}
