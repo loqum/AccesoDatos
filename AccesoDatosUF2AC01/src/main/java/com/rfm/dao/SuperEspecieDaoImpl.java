@@ -14,28 +14,26 @@ import com.rfm.utils.Literales;
 import com.rfm.view.Consola;
 
 public class SuperEspecieDaoImpl implements SuperEspecieDao {
-	
+
 	private static Scanner scanner = new Scanner(System.in);
 	private static final Logger LOGGER = Logger.getLogger(com.rfm.dao.SuperEspecieDaoImpl.class.getName());
+	private static PreparedStatement preparedStatement = null;
 
 	@Override
-	public void addSuperEspecie(SuperEspecieDto superEspecie) throws SQLException {
-
-		PreparedStatement addSuperEspecie = null;
-
+	public synchronized void addSuperEspecie(SuperEspecieDto superEspecie) throws SQLException {
+		Connection connection = null;
 		System.out.println(Literales.getIntroduceNombreEspecie());
-		
 		superEspecie.setNombre(scanner.nextLine());
-		
-		try (Connection connection = ConnectionDataBase.getInstance().getConnection()) {
-			connection.setAutoCommit(false);
-			addSuperEspecie = connection.prepareStatement(Literales.getAddsuperespecie());
-			addSuperEspecie.setString(1, Consola.getSuperEspecie().getNombre());
-			connection.commit();
 
-			if (addSuperEspecie.executeUpdate() > 0) {
+		try {
+			connection = ConnectionDataBase.getInstance().getConnection();
+			preparedStatement = connection.prepareStatement(Literales.getAddsuperespecie());
+			preparedStatement.setString(1, Consola.getSuperEspecie().getNombre());
+
+			if (preparedStatement.executeUpdate() > 0) {
 				LOGGER.debug(Literales.getRegistroExitoInsert());
 				System.out.println(Literales.getRegistroExitoInsert());
+
 			} else {
 				LOGGER.debug(Literales.getRegistroErrorInsert());
 			}
@@ -46,8 +44,8 @@ public class SuperEspecieDaoImpl implements SuperEspecieDao {
 
 		} finally {
 
-			if (addSuperEspecie != null) {
-				addSuperEspecie.close();
+			if (preparedStatement != null) {
+				preparedStatement.close();
 			}
 
 		}
@@ -57,7 +55,7 @@ public class SuperEspecieDaoImpl implements SuperEspecieDao {
 	}
 
 	@Override
-	public void deleteSuperEspecie(SuperEspecieDto superEspecie) throws SQLException {
+	public synchronized void deleteSuperEspecie(SuperEspecieDto superEspecie) throws SQLException {
 
 		Statement sentence = null;
 

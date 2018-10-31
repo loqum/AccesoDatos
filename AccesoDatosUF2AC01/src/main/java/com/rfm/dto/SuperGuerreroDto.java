@@ -31,6 +31,10 @@ public class SuperGuerreroDto extends SuperEspecieDto {
 		return idSuperEspecie;
 	}
 
+	public void setIdSuperEspecie(long idSuperEspecie) {
+		this.idSuperEspecie = idSuperEspecie;
+	}
+
 	@Override
 	public String getNombre() {
 		return nombre;

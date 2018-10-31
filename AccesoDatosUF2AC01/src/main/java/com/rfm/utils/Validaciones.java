@@ -1,5 +1,6 @@
 package com.rfm.utils;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Validaciones {
@@ -13,18 +14,19 @@ public class Validaciones {
 	private static final String VIENTO = "viento";
 
 	public static boolean isValidNumber(String eleccion) {
-		String regex = "\\d";
+		String regex = "\\d+";
 		Pattern pattern = Pattern.compile(regex);
 		boolean validNumber;
 
-		validNumber = (pattern.matcher(eleccion).matches());
+		validNumber = (pattern.matcher(eleccion.trim()).matches());
 		return validNumber;
 
 	}
 
 	public static boolean isValidPower(String poder) {
 		boolean validPower;
-		validPower = (poder.equalsIgnoreCase(AGUA) || poder.equalsIgnoreCase(FUEGO) || poder.equalsIgnoreCase(VIENTO));
+		validPower = (poder.trim().equalsIgnoreCase(AGUA) || poder.trim().equalsIgnoreCase(FUEGO)
+				|| poder.trim().equalsIgnoreCase(VIENTO));
 		return validPower;
 	}
 
@@ -32,6 +34,15 @@ public class Validaciones {
 		boolean validLevel;
 		validLevel = (nivel >= 1 && nivel <= 5);
 		return validLevel;
+	}
+
+	public static boolean isValidId(String primerId, List<String> segundoId) {
+		for (String resultadosSegundoId : segundoId) {
+			if (primerId.trim().equals(resultadosSegundoId)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
