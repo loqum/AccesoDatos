@@ -88,7 +88,7 @@ public class SuperGuerreroDaoImpl implements SuperGuerreroDao {
 
 			superGuerrero.setNivelPoder(Integer.parseInt(nivel));
 
-			preparedStatement = connection.prepareStatement(Literales.getAddguerrero());
+			preparedStatement = connection.prepareStatement(Literales.getInsertSuperGuerrero());
 
 			preparedStatement.setLong(1, Consola.getSuperGuerrero().getIdSuperEspecie());
 			preparedStatement.setString(2, Consola.getSuperGuerrero().getNombre());
@@ -119,7 +119,7 @@ public class SuperGuerreroDaoImpl implements SuperGuerreroDao {
 
 			statement = connection.createStatement();
 
-			if (statement.executeUpdate(Literales.getAddpoder()) > 0) {
+			if (statement.executeUpdate(Literales.getUpdatePoder()) > 0) {
 				LOGGER.debug(Literales.getRegistroExitoInsert());
 			} else {
 				LOGGER.debug(Literales.getRegistroErrorInsert());
@@ -150,7 +150,7 @@ public class SuperGuerreroDaoImpl implements SuperGuerreroDao {
 
 			statement = connection.createStatement();
 
-			statement.executeQuery(Literales.getRead());
+			statement.executeQuery(Literales.getSelectSuperGuerrero());
 			LOGGER.debug(statement.toString());
 
 			statement.close();
@@ -180,7 +180,7 @@ public class SuperGuerreroDaoImpl implements SuperGuerreroDao {
 
 			statement = connection.createStatement();
 
-			if (statement.executeUpdate(Literales.getReset()) > 0) {
+			if (statement.executeUpdate(Literales.getReserSuperGuerrero()) > 0) {
 				LOGGER.debug(Literales.getRegistroExitoReset());
 			} else {
 				LOGGER.debug(Literales.getRegistroErrorReset());
@@ -213,7 +213,7 @@ public class SuperGuerreroDaoImpl implements SuperGuerreroDao {
 
 			statement = connection.createStatement();
 
-			if (statement.executeUpdate(Literales.getDeleteguerrero()) > 0) {
+			if (statement.executeUpdate(Literales.getDeleteSuperGuerrero()) > 0) {
 				LOGGER.debug(Literales.getRegistroExitoDelete());
 			} else {
 				LOGGER.debug(Literales.getRegistroErrorDelete());

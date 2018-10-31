@@ -27,7 +27,7 @@ public class SuperEspecieDaoImpl implements SuperEspecieDao {
 
 		try {
 			connection = ConnectionDataBase.getInstance().getConnection();
-			preparedStatement = connection.prepareStatement(Literales.getAddsuperespecie());
+			preparedStatement = connection.prepareStatement(Literales.getInsertSuperEspecie());
 			preparedStatement.setString(1, Consola.getSuperEspecie().getNombre());
 
 			if (preparedStatement.executeUpdate() > 0) {
@@ -63,7 +63,7 @@ public class SuperEspecieDaoImpl implements SuperEspecieDao {
 
 			sentence = connection.createStatement();
 
-			if (sentence.executeUpdate(Literales.getDeleteespecie()) > 0) {
+			if (sentence.executeUpdate(Literales.getDeleteSuperEspecie()) > 0) {
 				LOGGER.debug(Literales.getRegistroExitoDelete());
 			} else {
 				LOGGER.debug(Literales.getRegistroErrorDelete());

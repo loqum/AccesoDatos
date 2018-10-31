@@ -30,13 +30,13 @@ public class Literales {
 	private static final String REGISTRO_ERROR_DELETE = "No se ha podido eliminar el registro";
 	private static final String ENTRADA_INVALIDA = "\nDebe introducir un valor numerico que se corresponda con las instrucciones.\n";
 
-	private static final String ADDSUPERESPECIE = "INSERT INTO superespecie (nombre) VALUES (?);";
-	private static final String ADDGUERRERO = "INSERT INTO superguerrero (idsuperespecie, nombre, descripcion, tipopoder, nivelpoder) VALUES (?,?,?,?,?);";
-	private static final String ADDPODER = "";
-	private static final String READ = "SELECT * FROM superespecie";
-	private static final String RESET = "";
-	private static final String DELETEGUERRERO = "DELETE FROM superguerrero WHERE idsuperguerrero=(?)";
-	private static final String DELETEESPECIE = "DELETE FROM superespecie WHERE idsuperespecie=(?)";
+	private static final String INSERT_SUPERESPECIE = "INSERT INTO superespecie (nombre) VALUES (?);";
+	private static final String INSERT_SUPERGUERRERO = "INSERT INTO superguerrero (idsuperespecie, nombre, descripcion, tipopoder, nivelpoder) VALUES (?,?,?,?,?);";
+	private static final String UPDATE_PODER = "";
+	private static final String SELECT_SUPERGUERRERO = "SELECT * FROM superguerrero";
+	private static final String RESET_SUPERGUERRERO = "";
+	private static final String DELETE_SUPERGUERRERO = "DELETE FROM superguerrero WHERE idsuperguerrero=(?)";
+	private static final String DELETE_SUPERESPECIE = "DELETE FROM superespecie WHERE idsuperespecie=(?)";
 	private static final String SELECT_SUPERESPECIE = "SELECT * FROM superespecie";
 
 	private static final String ESQUELETO_LATERAL = "\n*										*";
@@ -85,32 +85,32 @@ public class Literales {
 		return INTRODUCE_NOMBRE_ESPECIE;
 	}
 
-	public static String getAddsuperespecie() {
-		return ADDSUPERESPECIE;
+	public static String getInsertSuperEspecie() {
+		return INSERT_SUPERESPECIE;
 	}
 
-	public static String getAddguerrero() {
-		return ADDGUERRERO;
+	public static String getInsertSuperGuerrero() {
+		return INSERT_SUPERGUERRERO;
 	}
 
-	public static String getAddpoder() {
-		return ADDPODER;
+	public static String getUpdatePoder() {
+		return UPDATE_PODER;
 	}
 
-	public static String getRead() {
-		return READ;
+	public static String getSelectSuperGuerrero() {
+		return SELECT_SUPERGUERRERO;
 	}
 
-	public static String getReset() {
-		return RESET;
+	public static String getReserSuperGuerrero() {
+		return RESET_SUPERGUERRERO;
 	}
 
-	public static String getDeleteguerrero() {
-		return DELETEGUERRERO;
+	public static String getDeleteSuperGuerrero() {
+		return DELETE_SUPERGUERRERO;
 	}
 
-	public static String getDeleteespecie() {
-		return DELETEESPECIE;
+	public static String getDeleteSuperEspecie() {
+		return DELETE_SUPERESPECIE;
 	}
 
 	public static String getRegistroExitoInsert() {
