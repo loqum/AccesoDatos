@@ -7,10 +7,10 @@ public class Literales {
 	}
 
 	private static final String SALIDA_PROGRAMA = "Saliendo del programa...";
-	private static final String CONEXION_ESTABLECIDA = "Conexión establecida...";
+	private static final String CONEXION_ESTABLECIDA = "Conexion establecida...";
 	private static final String CONEXION_ERROR = "No se ha podido establecer la conexión: ";
 	private static final String USER = "root";
-	private static final String PASS = "fihoca";
+	private static final String PASS = "root";
 	private static final String URL = "jdbc:mysql://localhost:3306/accesodatos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
 	private static final String INTRODUCE_NOMBRE_GUERRERO = "Introduce un nombre para el nuevo Super Guerrero: ";
@@ -20,24 +20,27 @@ public class Literales {
 	private static final String INTRODUCE_NOMBRE_ESPECIE = "Introduce un nombre para la nueva Super Especie: ";
 	private static final String INTRODUCE_PODER_ERROR = "Debe introducir un poder de la lista";
 	private static final String INTRODUCE_TIPO_ESPECIE = "¿A que Super Especie quieres que pertenezca este Super Guerrero? Introduzca el Id: ";
+	private static final String INTRODUCE_ID_SUPERGUERRERO = "Selecciona por su número de ID el Super Guerrero que quieres borrar: ";
 	private static final String INTRODUCE_ID_ERROR = "Debe introducir un Id que aparezca en la lista";
 	private static final String REGISTRO_EXITO_INSERT = "El registro se ha insertado satisfactoriamente";
 	private static final String REGISTRO_EXITO_RESET = "El registro se ha reseteado satisfactoriamente";
-	private static final String REGISTRO_EXITO_DELETE = "El registro se ha reseteado satisfactoriamente";
+	private static final String REGISTRO_EXITO_DELETE = "El registro se ha eliminado satisfactoriamente";
 	private static final String REGISTRO_ERROR_SELECT = "No se ha podido consultar el registro";
 	private static final String REGISTRO_ERROR_INSERT = "No se ha podido insertar el registro";
 	private static final String REGISTRO_ERROR_RESET = "No se ha podido resetear el registro";
 	private static final String REGISTRO_ERROR_DELETE = "No se ha podido eliminar el registro";
 	private static final String ENTRADA_INVALIDA = "\nDebe introducir un valor numerico que se corresponda con las instrucciones.\n";
-
+	private static final String ERROR_NO_SUPERGUERRERO = "No hay ningún registro de Super Guerrero";
+	
 	private static final String INSERT_SUPERESPECIE = "INSERT INTO superespecie (nombre) VALUES (?);";
 	private static final String INSERT_SUPERGUERRERO = "INSERT INTO superguerrero (idsuperespecie, nombre, descripcion, tipopoder, nivelpoder) VALUES (?,?,?,?,?);";
 	private static final String UPDATE_PODER = "";
 	private static final String SELECT_SUPERGUERRERO = "SELECT * FROM superguerrero";
-	private static final String RESET_SUPERGUERRERO = "";
+	private static final String RESET_PODER_SUPERGUERRERO = "";
 	private static final String DELETE_SUPERGUERRERO = "DELETE FROM superguerrero WHERE idsuperguerrero=(?)";
 	private static final String DELETE_SUPERESPECIE = "DELETE FROM superespecie WHERE idsuperespecie=(?)";
 	private static final String SELECT_SUPERESPECIE = "SELECT * FROM superespecie";
+	private static final String OUTPUT_FORMAT = "Super Guerrero #%d:\t · ID SuperEspecie: %d, · Nombre: %s, · Descripcion: %s, · Tipo de poder: %s, · Nivel de poder: %d";
 
 	private static final String ESQUELETO_LATERAL = "\n*										*";
 	private static final String ESQUELETO_VERTICAL = "\n*********************************************************************************";
@@ -47,11 +50,12 @@ public class Literales {
 	private static final StringBuilder BIENVENIDA_PROGRAMA = builderBienvenidaPrograma.append(ESQUELETO_VERTICAL)
 			.append(ESQUELETO_LATERAL).append("\n*				Elija una opcion:				*")
 			.append(ESQUELETO_LATERAL).append("\n").append("*	0: Salir del programa							*")
-			.append("\n").append("*	1: Crear Super Especie							*").append("\n")
-			.append("*	2: Añadir Super Guerrero						*").append("\n")
-			.append("*	3: Insertar nivel de poder en Super Guerrero				*").append("\n")
-			.append("*	4: Consultar								*").append("\n")
-			.append("*	5: Resetear Super Guerrero						*").append("\n")
+			.append("\n")
+			.append("*	1: Crear Super Especie							*").append("\n")
+			.append("*	2: Crear Super Guerrero						    	*").append("\n")
+			.append("*	3: Añadir poder a Super Guerrero					*").append("\n")
+			.append("*	4: Consultar Super Guerreros						*").append("\n")
+			.append("*	5: Resetear poderes de Super Guerrero		  			*").append("\n")
 			.append("*	6: Eliminar Super Guerrero						*").append("\n")
 			.append("*	7: Eliminar Super Especie						*").append("\n")
 			.append("*	8: Ver instrucciones							*").append(ESQUELETO_LATERAL)
@@ -101,8 +105,8 @@ public class Literales {
 		return SELECT_SUPERGUERRERO;
 	}
 
-	public static String getReserSuperGuerrero() {
-		return RESET_SUPERGUERRERO;
+	public static String getResetPoderSuperGuerrero() {
+		return RESET_PODER_SUPERGUERRERO;
 	}
 
 	public static String getDeleteSuperGuerrero() {
@@ -179,6 +183,18 @@ public class Literales {
 
 	public static String getUrl() {
 		return URL;
+	}
+
+	public static String getOutputFormat() {
+		return OUTPUT_FORMAT;
+	}
+
+	public static String getIntroduceIdSuperguerrero() {
+		return INTRODUCE_ID_SUPERGUERRERO;
+	}
+
+	public static String getErrorNoSuperGuerrero() {
+		return ERROR_NO_SUPERGUERRERO;
 	}
 
 }
