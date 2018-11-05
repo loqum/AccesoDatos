@@ -90,7 +90,7 @@ public class Consola {
 				LOGGER.debug(Literales.getEntradaInvalida());
 			}
 
-		} while (Integer.parseInt(eleccion) != 0);
+		} while (!eleccion.equals("0"));
 	}
 
 	public static SuperEspecieDto getSuperEspecie() {
