@@ -328,6 +328,10 @@ public class SuperGuerreroDaoImpl implements SuperGuerreroDao {
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(Literales.getSelectSuperGuerrero());
 
+			if (resultSet.next() == false) {
+				System.out.println(Literales.getErrorNoSuperGuerrero());
+			}
+			
 			System.out.println(Literales.getIntroduceIdSuperguerrero());
 
 			while (resultSet.next()) {
@@ -344,6 +348,8 @@ public class SuperGuerreroDaoImpl implements SuperGuerreroDao {
 				if (!listaIdSuperGuerreros.isEmpty()) {
 					System.out.println(String.format(output, idSuperGuerrero, idSuperEspecie, nombre, descripcion,
 							tipoPoder, nivelPoder));
+				} else {
+					System.out.println(Literales.getErrorNoSuperGuerrero());
 				}
 			}
 
