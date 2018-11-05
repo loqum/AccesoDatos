@@ -6,9 +6,9 @@ import com.rfm.dto.SuperGuerreroDto;
 
 public interface SuperGuerreroDao {
 	
-	public void addSuperGuerrero(SuperGuerreroDto superGuerrero) throws SQLException;
-	public void addPoderSuperGuerrero(SuperGuerreroDto superGuerrero) throws SQLException;
+	public void createSuperGuerrero(SuperGuerreroDto superGuerrero) throws SQLException;
+	public void updatePoderSuperGuerrero(SuperGuerreroDto superGuerrero) throws SQLException;
 	public void readSuperGuerrero(SuperGuerreroDto superGuerrero) throws SQLException;
-	public void resetSuperGuerrero(SuperGuerreroDto superGuerrero) throws SQLException;
+	public void resetPoderSuperGuerrero(SuperGuerreroDto superGuerrero) throws SQLException;
 	public void deleteSuperGuerrero(SuperGuerreroDto superGuerrero) throws SQLException;
 }

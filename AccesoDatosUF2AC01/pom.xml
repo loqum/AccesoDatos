@@ -5,15 +5,16 @@
 	<groupId>com.rfm</groupId>
 	<artifactId>AccesoDatosUF2AC01</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	
+
 
 	<properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<build>
-		<finalName>test</finalName>
+		<finalName>AccesoDatosUF2AC01</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

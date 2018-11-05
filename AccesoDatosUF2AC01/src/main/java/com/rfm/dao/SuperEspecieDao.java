@@ -6,7 +6,8 @@ import com.rfm.dto.SuperEspecieDto;
 
 public interface SuperEspecieDao {
 
-	public void addSuperEspecie(SuperEspecieDto superEspecie) throws SQLException;
+	public void createSuperEspecie(SuperEspecieDto superEspecie) throws SQLException;
+	public void readSuperEspecie(SuperEspecieDto superEspecie) throws SQLException;
 	public void deleteSuperEspecie(SuperEspecieDto superEspecie) throws SQLException;
 
 }

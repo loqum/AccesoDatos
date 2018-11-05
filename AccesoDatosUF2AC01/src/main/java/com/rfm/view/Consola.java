@@ -44,15 +44,15 @@ public class Consola {
 					break;
 
 				case 1:
-					superEspecieDao.addSuperEspecie(superEspecie);
+					superEspecieDao.createSuperEspecie(superEspecie);
 					break;
 
 				case 2:
-					superGuerreroDao.addSuperGuerrero(superGuerrero);
+					superGuerreroDao.createSuperGuerrero(superGuerrero);
 					break;
 
 				case 3:
-					superGuerreroDao.addPoderSuperGuerrero(superGuerrero);
+					superEspecieDao.readSuperEspecie(superEspecie);
 					break;
 
 				case 4:
@@ -60,18 +60,22 @@ public class Consola {
 					break;
 
 				case 5:
-					superGuerreroDao.resetSuperGuerrero(superGuerrero);
+					superGuerreroDao.updatePoderSuperGuerrero(superGuerrero);
 					break;
 
 				case 6:
-					superGuerreroDao.deleteSuperGuerrero(superGuerrero);
+					superGuerreroDao.resetPoderSuperGuerrero(superGuerrero);
 					break;
 
 				case 7:
-					superEspecieDao.deleteSuperEspecie(superEspecie);
+					superGuerreroDao.deleteSuperGuerrero(superGuerrero);
 					break;
 
 				case 8:
+					superEspecieDao.deleteSuperEspecie(superEspecie);
+					break;
+
+				case 9:
 					System.out.println(Literales.getBienvenidaPrograma());
 					break;
 
