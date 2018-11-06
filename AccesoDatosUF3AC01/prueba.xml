@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Personas>
+  <Persona>
+    <nombre>Pep</nombre>
+    <apellidos>Claret</apellidos>
+    <edad>32</edad>
+    <telefono>654654654</telefono>
+    <provincia>Barcelona</provincia>
+    <pais>España</pais>
+  </Persona>
+  <Persona>
+    <nombre>Juan</nombre>
+    <apellidos>Garcia</apellidos>
+    <edad>39</edad>
+    <telefono>654654654</telefono>
+    <provincia>Barcelona</provincia>
+    <pais>España</pais>
+  </Persona>
+  <Persona>
+    <nombre>Alfredo</nombre>
+    <apellidos>Fernandez</apellidos>
+    <edad>87</edad>
+    <telefono>654654654</telefono>
+    <provincia>Barcelona</provincia>
+    <pais>España</pais>
+  </Persona>
+  <Persona>
+    <nombre>Sandra</nombre>
+    <apellidos>Agusti</apellidos>
+    <edad>28</edad>
+    <telefono>654654654</telefono>
+    <provincia>Barcelona</provincia>
+    <pais>España</pais>
+  </Persona>
+  <Persona>
+    <nombre>Marta</nombre>
+    <apellidos>Sanchez</apellidos>
+    <edad>23</edad>
+    <telefono>654654654</telefono>
+    <provincia>Barcelona</provincia>
+    <pais>España</pais>
+  </Persona>
+</Personas>
+
