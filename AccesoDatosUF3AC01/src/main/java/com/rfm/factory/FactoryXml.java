@@ -2,12 +2,15 @@ package com.rfm.factory;
 
 import com.rfm.utilities.Literales;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
 import org.jdom.Document;
 import org.jdom.Element;
+import org.jdom.JDOMException;
+import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
@@ -19,7 +22,44 @@ public class FactoryXml implements Factory {
 
   @Override
   public void readFile(String fileName, List<?> list) {
-    throw new UnsupportedOperationException();
+    SAXBuilder builder = new SAXBuilder();
+    File xmlFile = new File(fileName);
+    int autoNum = 1;
+    
+    try {
+      
+      Document document = builder.build(xmlFile);
+
+      Element rootNode = document.getRootElement();
+
+      list = rootNode.getChildren(Literales.getPersona());
+
+      for (int i = 0; i < list.size(); i++) {
+        
+        Element persona = (Element) list.get(i);
+
+        System.out.println("\nPersona " + autoNum++);
+
+        String nombre = persona.getChildTextTrim(Literales.getNombre());
+        String apellidos = persona.getChildTextTrim(Literales.getApellidos());
+        String edad = persona.getChildTextTrim(Literales.getEdad());
+        String telefono = persona.getChildTextTrim(Literales.getTelefono());
+        String provincia = persona.getChildTextTrim(Literales.getProvincia());
+        String pais = persona.getChildTextTrim(Literales.getPais());
+        
+        System.out.println("\tNombre: ".concat(nombre)
+            .concat(Literales.getFormat()).concat("Apellidos: ")
+            .concat(apellidos).concat(Literales.getFormat())
+            .concat("Edad: ").concat(edad)
+            .concat(Literales.getFormat()).concat("Telefono: ")
+            .concat(telefono).concat(Literales.getFormat())
+            .concat("Provincia: ").concat(provincia)
+            .concat(Literales.getFormat()).concat("Pais: ").concat(pais));
+      }
+
+    } catch (IOException | JDOMException e) {
+      System.err.println("Error: " + e);
+    }
   }
 
   @Override

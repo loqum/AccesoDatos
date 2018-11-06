@@ -14,6 +14,7 @@ public class Literales {
   private static final String PROVINCIA = "provincia";
   private static final String PAIS = "pais";
   private static final String ESPANYA = "España";
+  private static final String FORMAT = "\t\n\t";
 
   public static String getPersona() {
     return PERSONA;
@@ -45,6 +46,10 @@ public class Literales {
 
   public static String getEspanya() {
     return ESPANYA;
+  }
+
+  public static String getFormat() {
+    return FORMAT;
   }
 
 }
