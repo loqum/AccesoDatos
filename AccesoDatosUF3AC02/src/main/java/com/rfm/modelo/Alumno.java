@@ -3,7 +3,12 @@ package com.rfm.modelo;
 public class Alumno {
 
   String nombre;
+  String apellidos;
   int edad;
+  int telefono;
+  String provincia;
+  String pais;
+  
 
   public Alumno(String nombre, int edad) {
     this.nombre = nombre;
@@ -28,6 +33,38 @@ public class Alumno {
 
   public void setEdad(int edad) {
     this.edad = edad;
+  }
+  
+  public String getApellidos() {
+    return apellidos;
+  }
+
+  public void setApellidos(String apellidos) {
+    this.apellidos = apellidos;
+  }
+
+  public int getTelefono() {
+    return telefono;
+  }
+
+  public void setTelefono(int telefono) {
+    this.telefono = telefono;
+  }
+
+  public String getProvincia() {
+    return provincia;
+  }
+
+  public void setProvincia(String provincia) {
+    this.provincia = provincia;
+  }
+
+  public String getPais() {
+    return pais;
+  }
+
+  public void setPais(String pais) {
+    this.pais = pais;
   }
 
   @Override
@@ -69,8 +106,16 @@ public class Alumno {
     StringBuilder builder = new StringBuilder();
     builder.append("Alumno [nombre=");
     builder.append(nombre);
+    builder.append(", apellidos=");
+    builder.append(apellidos);
     builder.append(", edad=");
     builder.append(edad);
+    builder.append(", telefono=");
+    builder.append(telefono);
+    builder.append(", provincia=");
+    builder.append(provincia);
+    builder.append(", pais=");
+    builder.append(pais);
     builder.append("]");
     return builder.toString();
   }
