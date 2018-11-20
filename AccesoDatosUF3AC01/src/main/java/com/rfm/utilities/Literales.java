@@ -3,7 +3,7 @@ package com.rfm.utilities;
 public class Literales {
 
   private Literales() {
-
+    throw new IllegalStateException("Utility Class");
   }
 
   private static final String PERSONA = "Persona";

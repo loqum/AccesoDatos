@@ -14,14 +14,14 @@ import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
-public class FactoryXml implements Factory {
+public class FactoryXml implements FactoryMethod {
 
   public FactoryXml() {
     super();
   }
 
   @Override
-  public void readFile(String fileName, List<?> list) {
+  public void readFile(String fileName, List<?> list) throws IOException, JDOMException {
     SAXBuilder builder = new SAXBuilder();
     File xmlFile = new File(fileName);
     int autoNum = 1;
@@ -59,6 +59,7 @@ public class FactoryXml implements Factory {
 
     } catch (IOException | JDOMException e) {
       System.err.println("Error: " + e);
+      throw e;
     }
   }
 
