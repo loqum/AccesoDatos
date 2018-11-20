@@ -16,41 +16,49 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class ReadXmlSax extends DefaultHandler {
 
-  private boolean nombre;
-  private boolean apellidos;
-  private boolean edad;
-  private boolean telefono;
-  private boolean provincia;
-  private boolean pais;
+  private boolean nombre = false;
+  private boolean apellidos = false;
+  private boolean edad = false;
+  private boolean telefono = false;
+  private boolean provincia = false;
+  private boolean pais = false;
 
-  private Alumno alumno = new Alumno();
-  private List<Alumno> alumnos = new ArrayList<>();
+  private Alumno alumno = null;
+  private static List<Alumno> alumnos = new ArrayList<>();
+
+  public List<Alumno> saveList() {
+    return alumnos;
+  }
 
   @Override
-  public void startElement(String uri, String localName, String name, Attributes attributes)
+  public void startElement(String uri, String localName, String qName, Attributes attributes)
       throws SAXException {
 
-    if (name.equals(AlumnosElement.NOMBRE.getNombre())) {
+    if (qName.equals("Persona")) {
+      alumno = new Alumno();
+    }
+
+    if (qName.equals(AlumnosElement.NOMBRE.getNombre())) {
       nombre = true;
     }
 
-    if (name.equals(AlumnosElement.APELLIDOS.getNombre())) {
+    if (qName.equals(AlumnosElement.APELLIDOS.getNombre())) {
       apellidos = true;
     }
 
-    if (name.equals(AlumnosElement.EDAD.getNombre())) {
+    if (qName.equals(AlumnosElement.EDAD.getNombre())) {
       edad = true;
     }
 
-    if (name.equals(AlumnosElement.TELEFONO.getNombre())) {
+    if (qName.equals(AlumnosElement.TELEFONO.getNombre())) {
       telefono = true;
     }
 
-    if (name.equals(AlumnosElement.PROVINCIA.getNombre())) {
+    if (qName.equals(AlumnosElement.PROVINCIA.getNombre())) {
       provincia = true;
     }
 
-    if (name.equals(AlumnosElement.PAIS.getNombre())) {
+    if (qName.equals(AlumnosElement.PAIS.getNombre())) {
       pais = true;
     }
 
@@ -91,19 +99,14 @@ public class ReadXmlSax extends DefaultHandler {
   }
 
   @Override
-  public void endElement(String uri, String localName, String name) throws SAXException {
-    if (name.equals(AlumnosElement.NOMBRE.getNombre())) {
+  public void endElement(String uri, String localName, String qName) throws SAXException {
+    if (qName.equals(AlumnosElement.NOMBRE.getNombre())) {
       alumnos.add(alumno);
-      alumno = new Alumno();
     }
 
   }
 
-  public List<Alumno> saveList() {
-    return alumnos;
-  }
-
-  public static void parser() throws ParserConfigurationException {
+  public static void parser() throws ParserConfigurationException, SAXException, IOException {
 
     try {
 
@@ -115,6 +118,7 @@ public class ReadXmlSax extends DefaultHandler {
 
       for (Alumno alumnos : list) {
         System.out.println("Nombre: " + alumnos.getNombre());
+        System.out.println("Apellidos: " + alumnos.getApellidos());
         System.out.println("Edad: " + alumnos.getEdad());
         System.out.println("Teléfono: " + alumnos.getTelefono());
         System.out.println("Provincia: " + alumnos.getProvincia());
@@ -125,6 +129,7 @@ public class ReadXmlSax extends DefaultHandler {
 
     } catch (SAXException | IOException e) {
       System.err.println("Error: " + e);
+      throw e;
     }
 
   }

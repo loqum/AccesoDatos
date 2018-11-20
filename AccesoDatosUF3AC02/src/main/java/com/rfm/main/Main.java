@@ -2,16 +2,27 @@ package com.rfm.main;
 
 import com.rfm.factory.ReadXmlSax;
 
+import java.io.IOException;
+
 import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
 
 public class Main {
 
-  public static void main(String[] args) {
+  private static ReadXmlSax readSax = new ReadXmlSax();
+
+  public static void main(String[] args)
+      throws ParserConfigurationException, SAXException, IOException {
     try {
       ReadXmlSax.parser();
     } catch (ParserConfigurationException e) {
-      e.printStackTrace();
+      System.err.println("Error: " + e);
+      throw e;
     }
+
+    System.out.println(readSax.saveList());
+
   }
 
 }

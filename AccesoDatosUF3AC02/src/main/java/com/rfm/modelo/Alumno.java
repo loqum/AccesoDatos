@@ -8,15 +8,19 @@ public class Alumno {
   int telefono;
   String provincia;
   String pais;
-  
 
-  public Alumno(String nombre, int edad) {
+  public Alumno(String nombre, String apellidos, int edad, int telefono, String provincia,
+      String pais) {
     this.nombre = nombre;
+    this.apellidos = apellidos;
     this.edad = edad;
+    this.telefono = telefono;
+    this.provincia = provincia;
+    this.pais = pais;
   }
-  
+
   public Alumno() {
-    
+
   }
 
   public String getNombre() {
@@ -34,7 +38,7 @@ public class Alumno {
   public void setEdad(int edad) {
     this.edad = edad;
   }
-  
+
   public String getApellidos() {
     return apellidos;
   }
