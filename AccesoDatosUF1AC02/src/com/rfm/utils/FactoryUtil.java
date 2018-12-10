@@ -5,20 +5,20 @@ import java.io.IOException;
 
 public class FactoryUtil {
 
-	public static File create(String fileName) throws IOException {
+  public static File create(String fileName) throws IOException {
 
-		File file = new File(fileName);
+    File file = new File(fileName);
 
-		try {
-			if (!file.exists()) {
-				file.createNewFile();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw e;
-		}
+    try {
+      if (!file.exists()) {
+        file.createNewFile();
+      }
+    } catch (IOException e) {
+      System.err.println("Error: " + e);
+      throw e;
+    }
 
-		return file;
-	}
+    return file;
+  }
 
 }
